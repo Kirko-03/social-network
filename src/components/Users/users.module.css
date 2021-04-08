@@ -1,0 +1,18 @@
+.page{
+    color: black;
+}
+
+.city{
+    text-align: right;
+}
+.country{
+    text-align: right;
+ }
+img{
+    width: 100px;
+    height: 100px;
+    border-radius: 20px;
+}
+.bold{
+    font-weight: bold;
+}

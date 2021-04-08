@@ -1,0 +1,13 @@
+.header{
+    grid-area:h;
+    background: linear-gradient(105deg,rgba(54,153,269,31)  70%,rgba(54,153,269,31)  50%, rgba(240,238,242,1) 120%);
+
+}
+  .header img{
+      width: 150px;
+
+  }
+  .login{
+      float:right;
+  }
+  
