@@ -1,6 +1,14 @@
 import dialogReducer, {addMessageAC, updateMessageAC} from "./dialogReducer";
 import profileReducer, {addPostAC, setUserProfile, updateAddPostAC, UserProfileType} from "./profileReducer";
-import {follow, setCurrentPage, setLoadItem, setTotalUserCount, setUsers, unfollow} from "./usersReducer";
+import {
+    follow,
+    setCurrentPage,
+    setLoadItem,
+    setToggleFriends,
+    setTotalUserCount,
+    setUsers,
+    unfollow
+} from "./usersReducer";
 import {setAuthUserData} from "../components/Header/authReducer";
 
 export type RootStateType = {
@@ -58,7 +66,8 @@ export type ActionTypes = ReturnType<typeof addPostAC> |
     ReturnType<typeof setUsers> |
     ReturnType<typeof setCurrentPage> |
     ReturnType<typeof setTotalUserCount> |
-    ReturnType<typeof setLoadItem> | ReturnType<typeof setUserProfile> | ReturnType<typeof setAuthUserData>
+    ReturnType<typeof setLoadItem> | ReturnType<typeof setUserProfile>
+    | ReturnType<typeof setAuthUserData>|ReturnType<typeof setToggleFriends>
 
 
 export type friendsType = {

@@ -14,12 +14,14 @@ type LocType = {
     countryName: string
     cityName: string
 }
+
 export type InitialStateType = {
     users: Array<UserPageType>
     pageSize: number
     totalUserCount: number
     currentPage: number
     loadItem: boolean
+    followingInProgress:any[]
 }
 
 const FOLLOW = "FOLLOW"
@@ -28,12 +30,14 @@ const SET_USERS = "SET_USERS"
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE"
 const SET_TOTAL_USER_COUNT = "SET_TOTAL_USER_COUNT"
 const SET_LOAD_ITEM = "SET_LOAD_ITEM"
+const SET_TOGGLE_FRIENDS="SET_TOGGLE_FRIENDS"
 const initialState: InitialStateType = {
     users: [],
     pageSize: 4,
     totalUserCount: 0,
     currentPage: 1,
-    loadItem: true
+    loadItem: true,
+    followingInProgress:[]
 }
 
 const usersReducer = (state: InitialStateType = initialState, action: ActionTypes): InitialStateType => {
@@ -72,6 +76,13 @@ const usersReducer = (state: InitialStateType = initialState, action: ActionType
         case SET_LOAD_ITEM:
             return {
                 ...state,loadItem:action.loadItem
+            }
+        case SET_TOGGLE_FRIENDS:
+            return {
+                ...state,
+                followingInProgress :action.loadItem?
+                    [...state.followingInProgress,action.userId]
+        : state.followingInProgress.filter(id=>id!=action.userId)
             }
         default:
             return state
@@ -116,5 +127,11 @@ export const setLoadItem = (loadItem: boolean) => {
         type: SET_LOAD_ITEM,
         loadItem
     } as const
+}
+export const setToggleFriends = (loadItem:boolean,userId:number) => {
+    return{
+        type:SET_TOGGLE_FRIENDS,
+        loadItem,userId
+    }as const
 }
 export default usersReducer

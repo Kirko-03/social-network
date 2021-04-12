@@ -2,9 +2,8 @@ import React from "react";
 import us from "./users.module.css"
 import userPhoto from "./../../nophoto.png"
 import {InitialStateType} from "../../redux/usersReducer";
-import { NavLink } from "react-router-dom";
-import axios from "axios";
-
+import {NavLink} from "react-router-dom";
+import { deleteUser, postUser} from "../../api/api";
 type UsersFuncType = {
     follow: (userId: number) => void
     unfollow: (userId: number) => void
@@ -13,6 +12,8 @@ type UsersFuncType = {
     currentPage: number
     usersPage: InitialStateType
     onPageChanged: (currentPage: number) => void
+    followingInProgress:any[]
+    setToggleFriends:(loadItem: boolean,userId:number) => void
 }
 
 let Users = (props: UsersFuncType) => {
@@ -36,7 +37,7 @@ let Users = (props: UsersFuncType) => {
 
                 <div className={us.page}>
 <span>
-    <NavLink to={`/profile/`}>
+    <NavLink to={`/profile/`+u.id}>
                     <img src={u.photos.small != null ? u.photos.small : userPhoto}/>
              </NavLink>
                     <div className={us.inform}>
@@ -46,26 +47,23 @@ let Users = (props: UsersFuncType) => {
                     </div>
                     <br/>
                     <div className={us.button}>
-                    {u.followed ? <button onClick={() => {
-
-                        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,{
-                            withCredentials: true,
-                            headers: {
-                                "API-KEY": "28d35b65-1c27-49fe-a252-37715ef9a2a4"
-                            }}).then
-                        (response => {
-                            if(response.data.resultCode == 0)
-                            props.unfollow(u.id)
-                        })
-                    }}>Удалить из друзей</button> : <button onClick={() => {
-                        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,{},{
-                            withCredentials: true,headers: {
-                            "API-KEY": "28d35b65-1c27-49fe-a252-37715ef9a2a4"
+                    {u.followed ? <button disabled={props.followingInProgress.some(id=> id === u.id)}  onClick={() => {
+                        debugger
+                     props.setToggleFriends(true,u.id)
+                        deleteUser(u.id).then
+                        ((data:any) => {
+                            if (data.resultCode == 0 && props.unfollow)
+                                props.unfollow(u.id)
+                                props.setToggleFriends(false,u.id)
                         }
-                        }).then
-                        (response => {
-                            if(response.data.resultCode == 0)
+                        )
+                    }}>Удалить из друзей</button> : <button  disabled={props.followingInProgress.some(id=> id === u.id)}  onClick={() => {
+                        props.setToggleFriends(true,u.id)
+                        postUser(u.id).then
+                        ((data:any) => {
+                            if (data.resultCode == 0 && props.follow)
                                 props.follow(u.id)
+                            props.setToggleFriends(false,u.id)
                         })
 
                     }}>Добавить в друзья</button>}

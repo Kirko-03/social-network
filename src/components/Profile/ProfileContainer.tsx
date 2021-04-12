@@ -37,10 +37,10 @@ let mapStateToProps = (state: RootReduxState) => {
         let userId = this.props.match.params.userId
 
         if(!userId){
-            userId = 2
+            userId = 15920
         }
 
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/`+userId).then
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile`+userId).then
 
         (response => {
             debugger
