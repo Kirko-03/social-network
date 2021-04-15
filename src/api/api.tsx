@@ -15,16 +15,19 @@ export const usersAPI = {
         if(response.data)
         return response.data
     });
-}}
-export const deleteUser = (id:number) => {
-   return  instance.delete(`follow/${id}`).then
-    (response => {
-        return response.data;
-    });
+},
+ deleteUser (id:number){
+   return  instance.delete(`follow/${id}`)
+},
+postUser(id:number)  {
+  return   instance.post(`follow/${id}`,{})
+},
+    getProfile(id:number){
+        return instance.get(`profile`+id)
+    }
 }
-export const postUser = (id:number) => {
-  return   instance.post(`follow/${id}`,{}).then
-    (response => {
-        return response.data;
-    });
+export const authAPI={
+    getAuth(){
+        return instance.get(`auth/me`)
+    }
 }

@@ -6,6 +6,7 @@ import {RootReduxState} from "../../redux/redux-store";
 
 import {RouteComponentProps, withRouter} from 'react-router-dom';
 import {setUserProfile, UserProfileType} from '../../redux/profileReducer';
+import {usersAPI} from "../../api/api";
 type ParamProps={
     userId:any
 }
@@ -40,10 +41,8 @@ let mapStateToProps = (state: RootReduxState) => {
             userId = 15920
         }
 
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile`+userId).then
-
+       usersAPI.getProfile(userId).then
         (response => {
-            debugger
             this.props.setUserProfile(response.data)
         })
 

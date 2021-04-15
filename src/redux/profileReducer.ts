@@ -1,4 +1,7 @@
 import {ActionTypes, PostType, profilePageType} from "./store";
+import {Dispatch} from "react";
+import {usersAPI} from "../api/api";
+import {ThunkAction} from "redux-thunk";
 
 type SetUserProfileAC = {
     type:"SET-USER-PROFILE"
@@ -85,10 +88,20 @@ export const updateAddPostAC = (body: string) => {
     } as const
 
 }
-export const setUserProfile = (userProfile:UserProfileType|null):SetUserProfileAC =>{
+ export const setUserProfile = (userProfile:UserProfileType|null):SetUserProfileAC =>{
     return{
         type:SETUSERPROFILE,
         userProfile: userProfile
     }as const
+}
+export const getUserProfile = (userId:number):ThunkAction<any, any, any, any> => {
+    return async (dispatch:Dispatch<any>) =>
+    {
+        usersAPI.getProfile(userId).then
+        (response => {
+                dispatch(setUserProfile(response.data))
+            }
+        )
+    }
 }
 export default profileReducer

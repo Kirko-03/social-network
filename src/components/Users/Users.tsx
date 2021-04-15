@@ -3,7 +3,7 @@ import us from "./users.module.css"
 import userPhoto from "./../../nophoto.png"
 import {InitialStateType} from "../../redux/usersReducer";
 import {NavLink} from "react-router-dom";
-import { deleteUser, postUser} from "../../api/api";
+import {usersAPI} from "../../api/api";
 type UsersFuncType = {
     follow: (userId: number) => void
     unfollow: (userId: number) => void
@@ -50,7 +50,7 @@ let Users = (props: UsersFuncType) => {
                     {u.followed ? <button disabled={props.followingInProgress.some(id=> id === u.id)}  onClick={() => {
                         debugger
                      props.setToggleFriends(true,u.id)
-                        deleteUser(u.id).then
+                        usersAPI.deleteUser(u.id).then
                         ((data:any) => {
                             if (data.resultCode == 0 && props.unfollow)
                                 props.unfollow(u.id)
@@ -59,7 +59,7 @@ let Users = (props: UsersFuncType) => {
                         )
                     }}>Удалить из друзей</button> : <button  disabled={props.followingInProgress.some(id=> id === u.id)}  onClick={() => {
                         props.setToggleFriends(true,u.id)
-                        postUser(u.id).then
+                        usersAPI.postUser(u.id).then
                         ((data:any) => {
                             if (data.resultCode == 0 && props.follow)
                                 props.follow(u.id)
