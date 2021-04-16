@@ -10,6 +10,7 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import ProfileContainer from './components/Profile/ProfileContainer';
 import UsersContainer from './redux/UsersContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
+import Login from "./Login";
 
 
 const App = () => {
@@ -27,6 +28,7 @@ const App = () => {
                     <Route path='/music' render={() => <Music/>}/>
                     <Route path='/settings' render={() => <Settings/>}/>
                     <Route path='/friends' render={() => <Friends/>}/>
+                    <Route path='/login' render={()=><Login/>}/>
 
                 </div>
 

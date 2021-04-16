@@ -38,7 +38,9 @@ let initialState = {
         {message: "LOSEEER", like: 187},
         {message: "Соси пинчер", like: 100}],
     NewTextPost: "it-camasutra",
-    userProfile:null
+    userProfile:null,
+
+
 }
 
 const ADDPOST = "ADD-POST";
