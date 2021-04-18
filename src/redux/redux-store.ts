@@ -8,14 +8,14 @@ import authReducer from "../components/Header/authReducer";
 let reducers = combineReducers({
     profilePage: profileReducer,
     dialogPage: dialogReducer,
-    usersPage:usersReducer,
-    auth:authReducer
+    usersPage: usersReducer,
+    auth: authReducer
 })
 
 export type RootReduxState = ReturnType<typeof reducers>
 
 let store = createStore(reducers)
 
-export type  ReduxStoreType = typeof store
+
 
 export default store

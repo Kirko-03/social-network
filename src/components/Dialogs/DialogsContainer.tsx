@@ -5,6 +5,7 @@ import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import {RootReduxState} from "../../redux/redux-store";
 import {dialogsPageType} from "../../redux/store";
+import {withAuthRedirect} from "../../RedirectHOC";
 
 
 // const DialogsContainer = () => {
@@ -56,6 +57,5 @@ let mapStateToProps = (state:RootReduxState):mapStateToPropsType=>{
 
 
 
-    const DialogsContainer = connect<mapStateToPropsType,mapDispatchToPropsType,{},RootReduxState>(mapStateToProps,mapDispatchToProps)(Dialogs)
-
+    const DialogsContainer = withAuthRedirect(connect<mapStateToPropsType,mapDispatchToPropsType,{},RootReduxState>(mapStateToProps,mapDispatchToProps)(Dialogs))
     export default DialogsContainer;

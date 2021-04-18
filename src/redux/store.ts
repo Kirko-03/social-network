@@ -67,7 +67,7 @@ export type ActionTypes = ReturnType<typeof addPostAC> |
     ReturnType<typeof setCurrentPage> |
     ReturnType<typeof setTotalUserCount> |
     ReturnType<typeof setLoadItem> | ReturnType<typeof setUserProfile>
-    | ReturnType<typeof setAuthUserData>|ReturnType<typeof setToggleFriends>
+    | ReturnType<typeof setAuthUserData> | ReturnType<typeof setToggleFriends>
 
 
 export type friendsType = {
