@@ -2,10 +2,11 @@ import {ActionTypes, PostType, profilePageType} from "./store";
 import {Dispatch} from "react";
 import {usersAPI} from "../api/api";
 import {ThunkAction} from "redux-thunk";
+import {RootReduxState} from "./redux-store";
 
 type SetUserProfileAC = {
     type:"SET-USER-PROFILE"
-    userProfile:any
+    userProfile:UserProfileType|null
 }
 
 export type UserProfileType={
@@ -39,6 +40,7 @@ let initialState = {
         {message: "Соси пинчер", like: 100}],
     NewTextPost: "it-camasutra",
     userProfile:null,
+    isAuth: false
 
 
 }
@@ -96,8 +98,8 @@ export const updateAddPostAC = (body: string) => {
         userProfile: userProfile
     }as const
 }
-export const getUserProfile = (userId:number):ThunkAction<any, any, any, any> => {
-    return async (dispatch:Dispatch<any>) =>
+export const getUserProfile = (userId:number):ThunkAction<Promise<void>,RootReduxState, unknown, ActionTypes> => {
+    return async (dispatch) =>
     {
         usersAPI.getProfile(userId).then
         (response => {

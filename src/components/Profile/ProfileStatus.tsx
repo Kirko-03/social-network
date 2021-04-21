@@ -3,11 +3,14 @@ import React from "react";
 type PropsType = {
     status:string
 }
+
 class ProfileStatus extends React.Component<PropsType>{
+
     state={
-        editMode:false
-    }
+        editMode:false}
+
 activateMode=()=>{
+    console.log(this)
         this.setState({
             editMode:true
         })
@@ -23,7 +26,8 @@ activateMode=()=>{
              {this.state.editMode && <input value={this.props.status} onBlur={this.deactivateMode} autoFocus/>}
          </div>
          <div>
-             {!this.state.editMode && <span onClick={this.activateMode}>{this.props.status}</span>}
+
+             {!this.state.editMode && <span  onClick={this.activateMode}>{this.props.status}</span>}
          </div>
      </div>
     }

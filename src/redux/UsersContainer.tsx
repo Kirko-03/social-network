@@ -14,6 +14,7 @@ import {
 } from "./usersReducer";
 import React from "react";
 import {usersAPI} from "../api/api";
+import {compose} from "redux";
 
 
 
@@ -42,8 +43,6 @@ export class UsersContainer extends React.Component<UsersPropsType> {
     componentDidMount() {
         this.props.setLoadItem(true)
         usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then((data:any) => {
-                this.props.setLoadItem(false)
-                this.props.setUsers(data.items)
                 this.props.setTotalUserCount(data.totalCount)
             })
     }
@@ -82,8 +81,8 @@ let mapStateToProps = (state: RootReduxState): MapStateToPropsType => {
 }
 
 
-export default connect<MapStateToPropsType, MapDispatchToPropsType, {}, RootReduxState>(mapStateToProps, {
+export default compose(connect<MapStateToPropsType, MapDispatchToPropsType, {}, RootReduxState>(mapStateToProps, {
     follow, unfollow,
     setUsers, setCurrentPage, setTotalUserCount, setLoadItem,setToggleFriends
-})(UsersContainer)
+})(UsersContainer))
 

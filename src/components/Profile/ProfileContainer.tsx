@@ -3,20 +3,21 @@ import Profile from "./Profile";
 import {connect} from "react-redux";
 import {RootReduxState} from "../../redux/redux-store";
 
-import {RouteComponentProps, withRouter} from 'react-router-dom';
-import {setUserProfile, UserProfileType} from '../../redux/profileReducer';
-import {usersAPI} from "../../api/api";
+import {Redirect, RouteComponentProps, withRouter} from 'react-router-dom';
+import {getUserProfile, UserProfileType} from '../../redux/profileReducer';
 import {withAuthRedirect} from "../../RedirectHOC";
+import {compose} from "redux";
 
-type ParamProps={
-    userId:any
+type ParamProps = {
+    userId: any
 }
 
 type MapStateToPropsType = {
     userProfile: UserProfileType | null
+    isAuth:boolean
 }
 type MapDispatchToPropsType = {
-    setUserProfile: (userProfile: UserProfileType | null) => void
+    getUserProfile:(userId:number) =>void
 
 }
 
@@ -24,38 +25,36 @@ export type ProfilePropsType = MapStateToPropsType & MapDispatchToPropsType
 export type PropsType = RouteComponentProps<ParamProps> & ProfilePropsType
 let mapStateToProps = (state: RootReduxState) => {
     return {
+        isAuth:state.auth.isAuth,
         userProfile: state.profilePage.userProfile,
 
     }
 }
- class ProfileContainer extends React.Component<PropsType> {
+
+class ProfileContainer extends React.Component<PropsType> {
 
 
     componentDidMount() {
 
 
-
-
         let userId = this.props.match.params.userId
 
-        if(!userId){
+        if (!userId) {
             userId = 15920
         }
 
-       usersAPI.getProfile(userId).then
-        (response => {
-            this.props.setUserProfile(response.data)
-        })
-
+        this.props.getUserProfile(userId)
     }
 
 
     render() {
+        //if(this.props.isAuth===false)return <Redirect to={'/login'}/>
         return <Profile {...this.props} userProfile={this.props.userProfile}/>
     }
+
 }
 
 
-let WithRouterContainer=withRouter(ProfileContainer)
+let WithRouterContainer = withRouter(ProfileContainer)
 
-export default withAuthRedirect(connect<MapStateToPropsType, MapDispatchToPropsType, {}, RootReduxState>(mapStateToProps, {setUserProfile})(WithRouterContainer))
+export default compose(withAuthRedirect,connect<MapStateToPropsType, MapDispatchToPropsType, {}, RootReduxState>(mapStateToProps, {getUserProfile}))(WithRouterContainer)

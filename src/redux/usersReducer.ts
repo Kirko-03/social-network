@@ -1,4 +1,7 @@
 import {ActionTypes} from "./store";
+import {usersAPI} from "../api/api";
+import {ThunkAction} from "redux-thunk";
+import {RootReduxState} from "./redux-store";
 
 export type UserPageType = {
     id: number

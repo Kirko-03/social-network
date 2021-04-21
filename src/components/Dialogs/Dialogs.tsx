@@ -2,6 +2,7 @@ import React, {ChangeEvent} from 'react'
 import s from './Dialogs.module.css'
 
 import {dialogsPageType} from "../../redux/store";
+import {Redirect} from "react-router-dom";
 
 
 type DialogsPropsType = {
@@ -24,7 +25,7 @@ const Dialogs = (props: DialogsPropsType) => {
     }
     debugger
 
-
+//if(props.isAuth===false)return <Redirect to={'/login'}/>
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>

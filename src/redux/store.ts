@@ -1,5 +1,5 @@
 import dialogReducer, {addMessageAC, updateMessageAC} from "./dialogReducer";
-import profileReducer, {addPostAC, setUserProfile, updateAddPostAC, UserProfileType} from "./profileReducer";
+import profileReducer, {addPostAC, getUserProfile, setUserProfile, updateAddPostAC, UserProfileType} from "./profileReducer";
 import {
     follow,
     setCurrentPage,
