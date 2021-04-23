@@ -10,6 +10,9 @@ import ProfileStatus from './ProfileStatus';
 
 type ProfileType = {
     userProfile: UserProfileType | null
+    status:string
+    updateStatus:(status:string)=>void
+
 }
 
 const Profile = (props: ProfileType) => {
@@ -17,7 +20,7 @@ const Profile = (props: ProfileType) => {
     return (
         <div className={b.body}>
             <ProfileItem userProfile={props.userProfile}/>
-            <ProfileStatus status={'Status'}/>
+            <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
             <MyPostContainer/>
         </div>
     )

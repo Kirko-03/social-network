@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import {RootReduxState} from "../../redux/redux-store";
 
 import {Redirect, RouteComponentProps, withRouter} from 'react-router-dom';
-import {getUserProfile, UserProfileType} from '../../redux/profileReducer';
+import {getStatus, getUserProfile, updateStatus, UserProfileType} from '../../redux/profileReducer';
 import {withAuthRedirect} from "../../RedirectHOC";
 import {compose} from "redux";
 
@@ -14,10 +14,15 @@ type ParamProps = {
 
 type MapStateToPropsType = {
     userProfile: UserProfileType | null
-    isAuth:boolean
+    isAuth: boolean,
+    status:string
+
 }
 type MapDispatchToPropsType = {
-    getUserProfile:(userId:number) =>void
+    getUserProfile: (userId: number) => void
+    getStatus:(userId: number) => void
+    updateStatus:(status:string)=>void
+
 
 }
 
@@ -25,8 +30,9 @@ export type ProfilePropsType = MapStateToPropsType & MapDispatchToPropsType
 export type PropsType = RouteComponentProps<ParamProps> & ProfilePropsType
 let mapStateToProps = (state: RootReduxState) => {
     return {
-        isAuth:state.auth.isAuth,
+        isAuth: state.auth.isAuth,
         userProfile: state.profilePage.userProfile,
+        status: state.profilePage.status,
 
     }
 }
@@ -40,16 +46,19 @@ class ProfileContainer extends React.Component<PropsType> {
         let userId = this.props.match.params.userId
 
         if (!userId) {
-            userId = 15920
+            userId = 16706
         }
 
         this.props.getUserProfile(userId)
+        this.props.getStatus(userId)
+
+
     }
 
 
     render() {
-        //if(this.props.isAuth===false)return <Redirect to={'/login'}/>
-        return <Profile {...this.props} userProfile={this.props.userProfile}/>
+        if(!this.props.isAuth)return <Redirect to={'/login'}/>
+        return <Profile {...this.props} userProfile={this.props.userProfile} status={this.props.status} updateStatus={this.props.updateStatus} />
     }
 
 }
@@ -57,4 +66,8 @@ class ProfileContainer extends React.Component<PropsType> {
 
 let WithRouterContainer = withRouter(ProfileContainer)
 
-export default compose(withAuthRedirect,connect<MapStateToPropsType, MapDispatchToPropsType, {}, RootReduxState>(mapStateToProps, {getUserProfile}))(WithRouterContainer)
+export default compose(withAuthRedirect, connect<MapStateToPropsType, MapDispatchToPropsType, {}, RootReduxState>(mapStateToProps, {
+    getUserProfile,
+    getStatus,
+    updateStatus
+}))(WithRouterContainer)

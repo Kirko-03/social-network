@@ -1,5 +1,12 @@
 import dialogReducer, {addMessageAC, updateMessageAC} from "./dialogReducer";
-import profileReducer, {addPostAC, getUserProfile, setUserProfile, updateAddPostAC, UserProfileType} from "./profileReducer";
+import profileReducer, {
+    addPostAC,
+    setStatus,
+    getUserProfile,
+    setUserProfile,
+    updateAddPostAC,
+    UserProfileType,
+} from "./profileReducer";
 import {
     follow,
     setCurrentPage,
@@ -26,6 +33,8 @@ export type profilePageType = {
     posts: Array<PostType>
     NewTextPost: string
     userProfile: UserProfileType | null
+    isAuth:boolean,
+    status:string
 }
 export type friendsPageType = {
     friends: Array<friendsType>
@@ -67,7 +76,8 @@ export type ActionTypes = ReturnType<typeof addPostAC> |
     ReturnType<typeof setCurrentPage> |
     ReturnType<typeof setTotalUserCount> |
     ReturnType<typeof setLoadItem> | ReturnType<typeof setUserProfile>
-    | ReturnType<typeof setAuthUserData> | ReturnType<typeof setToggleFriends>
+    | ReturnType<typeof setAuthUserData> | ReturnType<typeof setToggleFriends>|
+    ReturnType<typeof setStatus>|ReturnType<typeof setStatus>
 
 
 export type friendsType = {
@@ -131,7 +141,10 @@ export let store: StoreType = {
                 {message: "LOSEEER", like: 187},
                 {message: "Соси пинчер", like: 100}],
             NewTextPost: "it-camasutra",
-            userProfile: null
+            userProfile: null,
+            isAuth:false,
+            status:""
+
         },
         friendsPage: {
             friends: [{friend: "Dimas"},

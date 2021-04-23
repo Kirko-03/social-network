@@ -22,8 +22,21 @@ export const usersAPI = {
 postUser(id:number)  {
   return   instance.post(`follow/${id}`,{})
 },
+getProfile(id: number){
+        console.warn('Устаревший метод')
+    return profileAPI.getProfile(id)
+}
+
+}
+export const profileAPI={
     getProfile(id:number){
         return instance.get(`profile`+id)
+    },
+    getStatus(id:number){
+        return instance.get(`profile/status/`+id)
+    },
+    updateStatus(status:string){
+        return instance.put(`profile/status`,{status:status})
     }
 }
 export const authAPI={
