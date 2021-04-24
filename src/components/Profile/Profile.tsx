@@ -11,7 +11,7 @@ import ProfileStatus from './ProfileStatus';
 type ProfileType = {
     userProfile: UserProfileType | null
     status:string
-    updateStatus:(status:string)=>void
+    updateStatus:(newStatus:string)=>void
 
 }
 

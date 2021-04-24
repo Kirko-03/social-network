@@ -38,7 +38,7 @@ let Users = (props: UsersFuncType) => {
                 <div className={us.page}>
 <span>
     <NavLink to={`/profile/`+u.id}>
-                    <img src={u.photos.small != null ? u.photos.small : userPhoto}/>
+                    <img  src={u.photos.small != null ? u.photos.small : userPhoto}/>
              </NavLink>
                     <div className={us.inform}>
                         <div>Имя:{u.name}</div>
@@ -52,7 +52,7 @@ let Users = (props: UsersFuncType) => {
                      props.setToggleFriends(true,u.id)
                         usersAPI.deleteUser(u.id).then
                         ((data:any) => {
-                            if (data.resultCode == 0 && props.unfollow)
+                            if (data.resultCode === 0 && props.unfollow)
                                 props.unfollow(u.id)
                                 props.setToggleFriends(false,u.id)
                         }
@@ -61,7 +61,7 @@ let Users = (props: UsersFuncType) => {
                         props.setToggleFriends(true,u.id)
                         usersAPI.postUser(u.id).then
                         ((data:any) => {
-                            if (data.resultCode == 0 && props.follow)
+                            if (data.resultCode === 0 && props.follow)
                                 props.follow(u.id)
                             props.setToggleFriends(false,u.id)
                         })

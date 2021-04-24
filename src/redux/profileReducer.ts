@@ -48,7 +48,6 @@ const ADDPOST = "ADD-POST";
 const UPDATEADDPOST = "UPDATE-ADD-POST";
 const SETUSERPROFILE = "SET-USER-PROFILE"
 const SETSTATUS="SET-STATUS"
-const SETUPDATESTATUS="SET-UPDATE-STATUS"
 const profileReducer = (state: profilePageType = initialState, action: ActionTypes) => {
 
     switch (action.type) {
@@ -85,7 +84,6 @@ const profileReducer = (state: profilePageType = initialState, action: ActionTyp
             return state
     }
 }
-
 export const setStatus = (status:string)=>{
     return{
         type:SETSTATUS,

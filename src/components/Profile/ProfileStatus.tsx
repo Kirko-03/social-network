@@ -1,36 +1,47 @@
 import React, {ChangeEvent} from "react";
-import {AxiosResponse} from "axios";
+import {RootReduxState} from "../../redux/redux-store";
 
 type PropsType = {
     status:string
-    updateStatus:(status:string)=>void
+    updateStatus:(newStatus:string)=>void
+}
+type StateType = {
+    editMode:boolean,
+    status:string
 }
 
-class ProfileStatus extends React.Component<PropsType>{
+class ProfileStatus extends React.Component<PropsType,StateType>{
 
     state={
         editMode:false,
-        status:this.props.status,
-        updateStatus:this.props.updateStatus
+        status:this.props.status
     }
 
 activateMode=()=>{
+
     console.log(this)
         this.setState({
             editMode:true,
-
+            status:this.state.status
         })
     }
     onStatusChange=(e:ChangeEvent<HTMLInputElement>)=>{
-       this.setState({status:e.target.value})
+       this.setState({status:e.currentTarget.value})
 }
         deactivateMode=()=>{
             this.setState({
                 editMode:false
             })
 
-            this.props.updateStatus(this.state.status)
-        }
+            this.props.updateStatus(this.props.status)}
+            componentDidUpdate=(prevProps: Readonly<PropsType>)=>
+            {
+                if(prevProps.status !== this.props.status){
+                    this.setState({
+                        status:this.props.status
+                    })
+                }
+            }
     render() {
      return<div>
          <div>
