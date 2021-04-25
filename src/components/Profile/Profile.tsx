@@ -21,7 +21,7 @@ const Profile = (props: ProfileType) => {
         <div className={b.body}>
             <ProfileItem userProfile={props.userProfile}/>
             <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
-            <MyPostContainer/>
+            <MyPostContainer />
         </div>
     )
 }

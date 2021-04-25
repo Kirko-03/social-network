@@ -11,7 +11,8 @@ let reducers = combineReducers({
     dialogPage: dialogReducer,
     usersPage: usersReducer,
     auth: authReducer,
-    form: formReducer
+    form: formReducer,
+
 })
 
 export type RootReduxState = ReturnType<typeof reducers>

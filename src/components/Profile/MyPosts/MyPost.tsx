@@ -1,17 +1,20 @@
-import React, {ChangeEvent} from 'react';
+import React, {ChangeEvent, FormEventHandler} from 'react';
 import Post from './Post/Post'
 import {profilePageType} from '../../../redux/store';
+import {Field,reduxForm} from "redux-form";
 
 type MyPostProps = {
     profilePage: profilePageType
     addPosts: () => void
     newTextChangeHandler: (body: string) => void
 
+
 }
-const MyPost = (props: MyPostProps) => {
+
+ const MyPost = (props: MyPostProps) => {
     let profilePage = props.profilePage
 
-    const addPosts = () => {
+    let addPost = ()=>{
         props.addPosts()
     }
     let NewTextPost = profilePage.NewTextPost
@@ -29,9 +32,11 @@ const MyPost = (props: MyPostProps) => {
                 <a>My post</a>
             </div>
             <textarea placeholder={"Введите что-нибудь"} value={NewTextPost} onChange={newTextChangeHandler}/>
-            <button onClick={addPosts}>add post</button>
+            <button onClick={addPost}>add post</button>
             {PostElem}
         </div>
     )
 }
+
+
 export default MyPost;
