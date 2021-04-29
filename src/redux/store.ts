@@ -4,7 +4,7 @@ import profileReducer, {
     setStatus,
     getUserProfile,
     setUserProfile,
-    updateAddPostAC,
+    // updateAddPostAC,
     UserProfileType,
 } from "./profileReducer";
 import {
@@ -31,7 +31,7 @@ export type dialogsPageType = {
 
 export type profilePageType = {
     posts: Array<PostType>
-    NewTextPost: string
+    // NewTextPost: string
     userProfile: UserProfileType | null
     isAuth:boolean,
     status:string
@@ -62,13 +62,13 @@ export type StoreType = {
     addMessage: (messageText: string) => void
     subscribe: (observer: () => void) => void
     _onChange: () => void
-    updateAddPost: (t: string) => void
+    // updateAddPost: (t: string) => void
     updateMessage: (newMessage: string) => void
     getState: () => RootStateType
     dispatch: (action: ActionTypes) => void
 }
 export type ActionTypes = ReturnType<typeof addPostAC> |
-    ReturnType<typeof updateAddPostAC> |
+    // ReturnType<typeof updateAddPostAC> |
     ReturnType<typeof updateMessageAC> |
     ReturnType<typeof addMessageAC> | ReturnType<typeof follow> |
     ReturnType<typeof unfollow> |
@@ -98,10 +98,10 @@ export let store: StoreType = {
         this._state.profilePage.posts.push(newPost);
         this._onChange()
     },
-    updateAddPost(newText: string) {
-        this._state.profilePage.NewTextPost = newText
-        this._onChange()
-    },
+    // updateAddPost(newText: string) {
+    //     this._state.profilePage.NewTextPost = newText
+    //     this._onChange()
+    // },
     updateMessage(newMessage: string) {
         this._state.dialogsPage.NewTextMessage = newMessage
         this._onChange()
@@ -140,7 +140,7 @@ export let store: StoreType = {
                 {message: "Learn Pituhon(((", like: -13},
                 {message: "LOSEEER", like: 187},
                 {message: "Соси пинчер", like: 100}],
-            NewTextPost: "it-camasutra",
+            // NewTextPost: "it-camasutra",
             userProfile: null,
             isAuth:false,
             status:""

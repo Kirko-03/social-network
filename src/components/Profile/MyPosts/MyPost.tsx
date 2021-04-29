@@ -1,42 +1,61 @@
-import React, {ChangeEvent, FormEventHandler} from 'react';
+import React, {ChangeEvent} from 'react';
 import Post from './Post/Post'
-import {profilePageType} from '../../../redux/store';
-import {Field,reduxForm} from "redux-form";
+import {PostType, profilePageType} from '../../../redux/store';
+import {Field, InjectedFormProps, reduxForm, SubmitHandler} from "redux-form";
+
 
 type MyPostProps = {
-    profilePage: profilePageType
-    addPosts: () => void
-    newTextChangeHandler: (body: string) => void
-
+    posts: Array<PostType>
+    addPosts: (NewTextPost: string) => void
+}
+// newTextChangeHandler: (body: string) => void
+type FormDataType = {
+    addPosts: (NewTextPost: string) => void
+    NewTextPost:string
 
 }
 
- const MyPost = (props: MyPostProps) => {
-    let profilePage = props.profilePage
-
-    let addPost = ()=>{
-        props.addPosts()
-    }
-    let NewTextPost = profilePage.NewTextPost
-
-    let PostElem = profilePage.posts.map(p => <Post message={p.message} like={p.like}/>)
-
-    const newTextChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        let body = e.target.value
-        props.newTextChangeHandler(body)
-
-    }
+type AddFormType={
+    NewTextPost:string
+}
+const MyPostForm :React.FC<InjectedFormProps<FormDataType, {}, string>> =(props)=> {
     return (
         <div>
             <div>
                 <a>My post</a>
             </div>
-            <textarea placeholder={"Введите что-нибудь"} value={NewTextPost} onChange={newTextChangeHandler}/>
-            <button onClick={addPost}>add post</button>
+            <form onSubmit={props.handleSubmit}>
+                <Field placeholder={"Введите что-нибудь"} name={"NewTextPost"} component={"textarea"} />
+                <button>Оставить пост</button>
+            </form>
+        </div>
+    )
+}
+const MyPost:React.ComponentType<MyPostProps> = (props)=>{
+    let posts = props.posts
+
+    const onAddPosts = (values:AddFormType)=> {
+        if(values.NewTextPost)
+            props.addPosts(values.NewTextPost)
+        values.NewTextPost=''
+
+    }
+    /*    let NewTextPost = profilePage.NewTextPost*/
+
+    let PostElem =posts.map(p => <Post message={p.message} like={p.like}/>)
+
+    // const newTextChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    //     let body = e.target.value
+    //     props.newTextChangeHandler(body)
+    //
+    // }
+    return(
+        <div>
+            <MyPostRedux onSubmit={onAddPosts}/>
             {PostElem}
         </div>
     )
 }
-
+const MyPostRedux=reduxForm<FormDataType>({form:"addPost"})(MyPostForm)
 
 export default MyPost;

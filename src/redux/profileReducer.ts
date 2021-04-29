@@ -37,7 +37,7 @@ let initialState = {
         {message: "Learn Pituhon(((", like: -13},
         {message: "LOSEEER", like: 187},
         {message: "Соси пинчер", like: 100}],
-    NewTextPost: "it-camasutra",
+    // NewTextPost: "it-camasutra",
     userProfile: null,
     isAuth: false,
     status: ""
@@ -45,7 +45,7 @@ let initialState = {
 }
 
 const ADDPOST = "ADD-POST";
-const UPDATEADDPOST = "UPDATE-ADD-POST";
+// const UPDATEADDPOST = "UPDATE-ADD-POST";
 const SETUSERPROFILE = "SET-USER-PROFILE"
 const SETSTATUS="SET-STATUS"
 const profileReducer = (state: profilePageType = initialState, action: ActionTypes) => {
@@ -53,21 +53,21 @@ const profileReducer = (state: profilePageType = initialState, action: ActionTyp
     switch (action.type) {
         case ADDPOST: {
             let newPost: PostType = {
-                message: state.NewTextPost,
+                message: action.NewTextPost,
                 like: 0
             };
             return {
                 ...state,
                 posts: [...state.posts, newPost],
-                NewTextPost: ""
+                // NewTextPost: ""
             }
         }
-        case   UPDATEADDPOST: {
-            return {
-                ...state,
-                NewTextPost: action.newText
-            }
-        }
+        // case   UPDATEADDPOST: {
+        //     return {
+        //         ...state,
+        //         NewTextPost: action.newText
+        //     }
+        // }
         case SETUSERPROFILE: {
             return {
                 ...state,
@@ -91,17 +91,18 @@ export const setStatus = (status:string)=>{
     }as const
 }
 
-export const addPostAC = () => {
+export const addPostAC = (NewTextPost:string) => {
     return {
-        type: ADDPOST
+        type: ADDPOST,
+        NewTextPost
     } as const
 }
-export const updateAddPostAC = (body: string) => {
+/*export const updateAddPostAC = (body: string) => {
     return {
         type: UPDATEADDPOST,
         newText: body
     } as const
-}
+}*/
 export const setUserProfile = (userProfile: UserProfileType | null): SetUserProfileAC => {
     return {
         type: SETUSERPROFILE,
