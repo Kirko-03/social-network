@@ -2,6 +2,10 @@ import React, {ChangeEvent} from 'react';
 import Post from './Post/Post'
 import {PostType, profilePageType} from '../../../redux/store';
 import {Field, InjectedFormProps, reduxForm, SubmitHandler} from "redux-form";
+import {maxLengthCreator, required} from "../../../validators/validators";
+import {Textarea} from "../../../Forms/FormComponents";
+
+
 
 
 type MyPostProps = {
@@ -18,6 +22,7 @@ type FormDataType = {
 type AddFormType={
     NewTextPost:string
 }
+const length = maxLengthCreator(30)
 const MyPostForm :React.FC<InjectedFormProps<FormDataType, {}, string>> =(props)=> {
     return (
         <div>
@@ -25,8 +30,9 @@ const MyPostForm :React.FC<InjectedFormProps<FormDataType, {}, string>> =(props)
                 <a>My post</a>
             </div>
             <form onSubmit={props.handleSubmit}>
-                <Field placeholder={"Введите что-нибудь"} name={"NewTextPost"} component={"textarea"} />
-                <button>Оставить пост</button>
+                <Field placeholder={"Введите что-нибудь"} name={"NewTextPost"} component={Textarea} validate={[required,length]} />
+<button>Оставить пост</button>
+
             </form>
         </div>
     )
