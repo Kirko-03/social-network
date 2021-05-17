@@ -1,57 +1,59 @@
 import React, {ChangeEvent} from "react";
-import {RootReduxState} from "../../redux/redux-store";
 
 type PropsType = {
-    status:string
-    updateStatus:(newStatus:string)=>void
+    status: string
+    updateStatus: (newStatus: string) => void
 }
 type StateType = {
-    editMode:boolean,
-    status:string
+    editMode: boolean,
+    status: string
 }
 
-class ProfileStatus extends React.Component<PropsType,StateType>{
+class ProfileStatus extends React.Component<PropsType, StateType> {
 
-    state={
-        editMode:false,
-        status:this.props.status
+    state = {
+        editMode: false,
+        status: this.props.status
     }
 
-activateMode=()=>{
+    activateMode = () => {
 
-    console.log(this)
+        console.log(this)
         this.setState({
-            editMode:true,
-            status:this.state.status
+            editMode: true,
+            status: this.state.status
         })
     }
-    onStatusChange=(e:ChangeEvent<HTMLInputElement>)=>{
-       this.setState({status:e.currentTarget.value})
-}
-        deactivateMode=()=>{
+    onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
+        this.setState({status: e.currentTarget.value})
+    }
+    deactivateMode = () => {
+        this.setState({
+            editMode: false
+        })
+
+        this.props.updateStatus(this.props.status)
+    }
+    componentDidUpdate = (prevProps: Readonly<PropsType>) => {
+        if (prevProps.status !== this.props.status) {
             this.setState({
-                editMode:false
+                status: this.props.status
             })
+        }
+    }
 
-            this.props.updateStatus(this.props.status)}
-            componentDidUpdate=(prevProps: Readonly<PropsType>)=>
-            {
-                if(prevProps.status !== this.props.status){
-                    this.setState({
-                        status:this.props.status
-                    })
-                }
-            }
     render() {
-     return<div>
-         <div>
-             {this.state.editMode && <input value={this.state.status} onChange={this.onStatusChange} onBlur={this.deactivateMode} autoFocus/>}
-         </div>
-         <div>
+        return <div>
+            <div>
+                {this.state.editMode &&
+                <input value={this.state.status} onChange={this.onStatusChange} onBlur={this.deactivateMode}
+                       autoFocus/>}
+            </div>
+            <div>
 
-             {!this.state.editMode && <span  onClick={this.activateMode}>{this.state.status||"----"}</span>}
-         </div>
-     </div>
+                {!this.state.editMode && <span onClick={this.activateMode}>{this.state.status || "-"}</span>}
+            </div>
+        </div>
     }
 }
 
