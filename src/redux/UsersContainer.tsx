@@ -59,16 +59,17 @@ export class UsersContainer extends React.Component<UsersPropsType> {
 
     render() {
         return <>
-            {this.props.loadItem ? <Preloader/> : null}
+            {this.props.loadItem ? null: <Preloader/>}
             <Users
                 followingInProgress={this.props.followingInProgress}
                 setToggleFriends={this.props.setToggleFriends} follow={this.props.follow} unfollow={this.props.unfollow} pageSize={this.props.pageSize}
                    totalUserCount={this.props.totalUserCount} currentPage={this.props.currentPage}
                    usersPage={this.props.usersPage} onPageChanged={this.onPageChanged}/>
-        </>
+
+                   </>
     }
 }
-
+debugger
 let mapStateToProps = (state: RootReduxState): MapStateToPropsType => {
     return {
         usersPage: state.usersPage,

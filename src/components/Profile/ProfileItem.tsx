@@ -12,10 +12,10 @@ type ProfileType = {
 
 
 const ProfileItem = (props: ProfileType) => {
+
     if (props.userProfile === null) {
         return <Preloader/>
     }
-
     return (
         <div>
             <div>
@@ -34,6 +34,7 @@ const ProfileItem = (props: ProfileType) => {
                     {props.userProfile?.contacts.facebook ?
                         <div>facebook:<Link to={"/"}>{props.userProfile?.contacts.facebook}</Link></div> : null
                     }
+
                     {props.userProfile?.contacts.github ?
                         <div>github:<Link to={"/"}>{props.userProfile?.contacts.github}</Link></div> : null
                     }

@@ -11,7 +11,6 @@ let rerenderEntireTree = () => {
 
     ReactDOM.render(
         <BrowserRouter>
-
             <Provider store={store}>
                 <App/>
             </Provider>

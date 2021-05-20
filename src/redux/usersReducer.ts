@@ -5,15 +5,16 @@ export type UserPageType = {
     name: string
     followed: boolean
     photos: PhotosType
-    location: LocType
+    // location: LocType
 }
 type PhotosType = {
     small: string
+    large:string
 }
-type LocType = {
-    countryName: string
-    cityName: string
-}
+// type LocType = {
+//     countryName: string
+//     cityName: string
+// }
 
 export type InitialStateType = {
 

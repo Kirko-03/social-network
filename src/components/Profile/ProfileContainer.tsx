@@ -14,9 +14,9 @@ type ParamProps = {
 
 type MapStateToPropsType = {
     userProfile: UserProfileType | null
-    isAuth: boolean,
+    isAuth: boolean
     status:string
-
+    authorizedId: number | null
 }
 type MapDispatchToPropsType = {
     getUserProfile: (userId: number) => void
@@ -33,7 +33,7 @@ let mapStateToProps = (state: RootReduxState) => {
         isAuth: state.auth.isAuth,
         userProfile: state.profilePage.userProfile,
         status: state.profilePage.status,
-
+        authorizedId:state.auth.id
     }
 }
 
@@ -44,9 +44,8 @@ class ProfileContainer extends React.Component<PropsType> {
 
 
         let userId = this.props.match.params.userId
-
         if (!userId) {
-            userId = 16706
+            userId =16706
         }
 
         this.props.getUserProfile(userId)
@@ -58,7 +57,10 @@ class ProfileContainer extends React.Component<PropsType> {
 
     render() {
         if(!this.props.isAuth)return <Redirect to={'/login'}/>
-        return <Profile {...this.props} userProfile={this.props.userProfile} status={this.props.status} updateStatus={this.props.updateStatus} />
+        return <Profile  userProfile={this.props.userProfile}
+                        status={this.props.status}
+                        updateStatus={this.props.updateStatus}
+        />
     }
 
 }

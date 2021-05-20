@@ -32,9 +32,12 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
             <Field name={"password"} placeholder={"Password"} type={"password"} component={Input}
                    validate={[required, password]}/>
         </div>
+        {props.error && <div style={{color:'red',border:'1px red solid',maxWidth:'200px'}}>
+            {props.error}
+        </div>}
         <div>
             Remember login
-            <Field name={"rememberMe"} placeholder={"RememberMe"} type={"checkbox"} component={Input}/>ik
+            <Field name={"rememberMe"} placeholder={"RememberMe"} type={"checkbox"} component={Input}/>
         </div>
         <div>
             <button>Login</button>
@@ -47,7 +50,6 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
 export const LoginRedux = reduxForm<FormDataType>({form: "login"})(LoginForm)
 
 const MapStateToProps = (state: RootReduxState) => ({isAuth: state.auth.isAuth, login: state.auth.login})
-
 export const Login: React.FC<MapStateToProps & MapDispatchToProps> = (props) => {
     if (props.isAuth) return <Redirect to={'/profile'}/>
     const onSubmit = (formData: FormDataType) => {

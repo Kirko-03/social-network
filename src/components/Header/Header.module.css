@@ -4,8 +4,10 @@
 
 }
   .header img{
-      width: 150px;
 
+      width: 200px;
+      height: 100px;
+      border-radius: 20px;
   }
   .login{
       float:right;

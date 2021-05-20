@@ -4,7 +4,7 @@ import Navbar from './components/Navbar/Navbar';
 import News from "./components/News/News"
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import {BrowserRouter, Route} from "react-router-dom";
+import {BrowserRouter, Redirect, Route} from "react-router-dom";
 import Friends from "./components/Friends/Friends";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import ProfileContainer from './components/Profile/ProfileContainer';
@@ -21,6 +21,7 @@ const App = () => {
                 <HeaderContainer/>
                 <Navbar/>
                 <div className="app-writter-body">
+                 <Redirect to={'/profile'}/>
                     <Route path='/dialogs' render={() => <DialogsContainer/>}/>
                     <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
                     <Route path='/users' render={() => <UsersContainer/>}/>

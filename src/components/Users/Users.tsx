@@ -23,6 +23,7 @@ let Users = (props: UsersFuncType) => {
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i);
     }
+
     return (<div>
         {
 
@@ -42,13 +43,13 @@ let Users = (props: UsersFuncType) => {
              </NavLink>
                     <div className={us.inform}>
                         <div>Имя:{u.name}</div>
-                        <div>Город:{"u.location.cityName"}</div>
-                        <div>Страна:{"u.location.countryName"}</div>
+                        {/*<div>Город:{u.location.cityName}</div>*/}
+                        {/*<div>Страна:{u.location.countryName}</div>*/}
                     </div>
                     <br/>
                     <div className={us.button}>
                     {u.followed ? <button disabled={props.followingInProgress.some(id=> id === u.id)}  onClick={() => {
-                        debugger
+
                      props.setToggleFriends(true,u.id)
                         usersAPI.deleteUser(u.id).then
                         ((data:any) => {

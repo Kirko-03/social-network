@@ -2,6 +2,7 @@ import { ActionTypes } from "../../redux/store"
 import {authAPI} from "../../api/api";
 import {ThunkAction} from "redux-thunk";
 import {RootReduxState} from "../../redux/redux-store";
+import {stopSubmit} from "redux-form";
 
 
 
@@ -56,6 +57,10 @@ export const getAuthUserData = ():ThunkAction<Promise<void>, RootReduxState, unk
             authAPI.login(email,password,rememberMe,captcha).then(response => {
                 if (response.data.resultCode === 0) {
                     dispatch(getAuthUserData())
+                }
+                else{
+                    let message = response.data.messages.length>0?response.data.messages[0]:"wrong email or password"
+                    dispatch(stopSubmit('login',{_error:message}))
                 }
             })
         }}

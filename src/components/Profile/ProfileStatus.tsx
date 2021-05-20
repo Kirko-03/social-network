@@ -32,7 +32,7 @@ class ProfileStatus extends React.Component<PropsType, StateType> {
             editMode: false
         })
 
-        this.props.updateStatus(this.props.status)
+        this.props.updateStatus(this.state.status)
     }
     componentDidUpdate = (prevProps: Readonly<PropsType>) => {
         if (prevProps.status !== this.props.status) {
