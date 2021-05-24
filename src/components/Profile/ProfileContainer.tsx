@@ -22,8 +22,6 @@ type MapDispatchToPropsType = {
     getUserProfile: (userId: number) => void
     getStatus:(userId: number) => void
     updateStatus:(status:string)=>void
-
-
 }
 
 export type ProfilePropsType = MapStateToPropsType & MapDispatchToPropsType
@@ -45,7 +43,11 @@ class ProfileContainer extends React.Component<PropsType> {
 
         let userId = this.props.match.params.userId
         if (!userId) {
-            userId =16706
+            userId =this.props.authorizedId
+            if(!userId){
+
+            this.props.history.push("/login")
+            }
         }
 
         this.props.getUserProfile(userId)
@@ -66,10 +68,9 @@ class ProfileContainer extends React.Component<PropsType> {
 }
 
 
-let WithRouterContainer = withRouter(ProfileContainer)
 
-export default compose(withAuthRedirect, connect<MapStateToPropsType, MapDispatchToPropsType, {}, RootReduxState>(mapStateToProps, {
+export default compose<React.ComponentType>(withRouter, connect<MapStateToPropsType, MapDispatchToPropsType, {}, RootReduxState>(mapStateToProps, {
     getUserProfile,
     getStatus,
     updateStatus
-}))(WithRouterContainer)
+}))(ProfileContainer)

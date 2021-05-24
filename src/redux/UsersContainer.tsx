@@ -15,6 +15,14 @@ import {
 import React from "react";
 import {usersAPI} from "../api/api";
 import {compose} from "redux";
+import {
+    getCurrentPage,
+    getFollowingInProgress,
+    getLoadItem,
+    getPageSize,
+    getTotalUserCount,
+    getUser
+} from "./usersSelector";
 
 
 
@@ -59,25 +67,25 @@ export class UsersContainer extends React.Component<UsersPropsType> {
 
     render() {
         return <>
-            {this.props.loadItem ? null: <Preloader/>}
+
             <Users
                 followingInProgress={this.props.followingInProgress}
                 setToggleFriends={this.props.setToggleFriends} follow={this.props.follow} unfollow={this.props.unfollow} pageSize={this.props.pageSize}
                    totalUserCount={this.props.totalUserCount} currentPage={this.props.currentPage}
                    usersPage={this.props.usersPage} onPageChanged={this.onPageChanged}/>
-
+            {this.props.loadItem ?<Preloader/>:null}
                    </>
     }
 }
 debugger
 let mapStateToProps = (state: RootReduxState): MapStateToPropsType => {
     return {
-        usersPage: state.usersPage,
-        pageSize: state.usersPage.pageSize,
-        totalUserCount: state.usersPage.totalUserCount,
-        currentPage: state.usersPage.currentPage,
-        loadItem: state.usersPage.loadItem,
-        followingInProgress:state.usersPage.followingInProgress
+        usersPage: getUser(state),
+        pageSize: getPageSize(state),
+        totalUserCount:getTotalUserCount(state),
+        currentPage: getCurrentPage(state),
+        loadItem:getLoadItem(state),
+        followingInProgress:getFollowingInProgress(state)
     }
 }
 

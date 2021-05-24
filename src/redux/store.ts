@@ -16,7 +16,8 @@ import {
     setUsers,
     unfollow
 } from "./usersReducer";
-import {setAuthUserData} from "../components/Header/authReducer";
+import {setAuthUserData} from "./authReducer";
+import {setInitialSuccess} from "./appReducer";
 
 export type RootStateType = {
     profilePage: profilePageType
@@ -69,6 +70,7 @@ export type StoreType = {
 }
 export type ActionTypes = ReturnType<typeof addPostAC> |
     // ReturnType<typeof updateAddPostAC> |
+    ReturnType<typeof setInitialSuccess>|
     ReturnType<typeof updateMessageAC> |
     ReturnType<typeof addMessageAC> | ReturnType<typeof follow> |
     ReturnType<typeof unfollow> |

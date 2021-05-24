@@ -1,6 +1,6 @@
 import React from "react";
 import {Field, InjectedFormProps, reduxForm} from 'redux-form'
-import {login} from "./components/Header/authReducer";
+import {login} from "./redux/authReducer";
 import {Input} from "./Forms/FormComponents";
 import {maxLengthCreator, minPasswordCreator, required} from "./validators/validators";
 import {connect} from "react-redux";

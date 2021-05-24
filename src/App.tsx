@@ -11,31 +11,59 @@ import ProfileContainer from './components/Profile/ProfileContainer';
 import UsersContainer from './redux/UsersContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Login from "./Login";
+import {compose} from "redux";
+import {connect, MapStateToProps} from "react-redux";
+import {RootReduxState} from "./redux/redux-store";
+import {initializeApp} from "./redux/appReducer";
+import {initialize} from "redux-form";
+import Preloader from "./components/preloader/preloader";
 
+type MapDispatchToPropsType = {
+    initializeApp: () => void
+}
+type MapStateToPropsType={
+    initialized:boolean
+}
+type AppPropsType = MapDispatchToPropsType & MapStateToPropsType
+class App extends React.Component<AppPropsType> {
 
-const App = () => {
+    componentDidMount() {
+        this.props.initializeApp()
 
-    return (
-        <BrowserRouter>
-            <div className="app-writter">
-                <HeaderContainer/>
-                <Navbar/>
-                <div className="app-writter-body">
-                 <Redirect to={'/profile'}/>
-                    <Route path='/dialogs' render={() => <DialogsContainer/>}/>
-                    <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
-                    <Route path='/users' render={() => <UsersContainer/>}/>
-                    <Route path='/news' render={() => <News/>}/>
-                    <Route path='/music' render={() => <Music/>}/>
-                    <Route path='/settings' render={() => <Settings/>}/>
-                    <Route path='/friends' render={() => <Friends/>}/>
-                    <Route path='/login' render={() => <Login/>}/>
+    }
+
+    render() {
+        if(!this.props.initialized)
+          return  <Preloader/>
+        debugger
+        return (
+            <BrowserRouter>
+                <div className="app-writter">
+                    <HeaderContainer/>
+                    <Navbar/>
+                    <div className="app-writter-body">
+                        <Redirect to={'/profile'}/>
+                        <Route path='/dialogs' render={() => <DialogsContainer/>}/>
+                        <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
+                        <Route path='/users' render={() => <UsersContainer/>}/>
+                        <Route path='/news' render={() => <News/>}/>
+                        <Route path='/music' render={() => <Music/>}/>
+                        <Route path='/settings' render={() => <Settings/>}/>
+                        <Route path='/friends' render={() => <Friends/>}/>
+                        <Route path='/login' render={() => <Login/>}/>
+
+                    </div>
+
 
                 </div>
-
-
-            </div>
-        </BrowserRouter>
-    );
+            </BrowserRouter>
+        );
+    }
 }
-export default App;
+let mapStateToProps=(state:RootReduxState)=>{
+    return{
+        initialized:state.app.initialized
+    }
+}
+
+export default compose<React.ComponentType>(connect<MapStateToPropsType, MapDispatchToPropsType, {}, RootReduxState>(mapStateToProps, {initializeApp}))(App)
