@@ -37,7 +37,7 @@ const MyPostForm :React.FC<InjectedFormProps<FormDataType, {}, string>> =(props)
         </div>
     )
 }
-const MyPost:React.ComponentType<MyPostProps> = (props)=>{
+const MyPost:React.ComponentType<MyPostProps> = React.memo(props=>{
     let posts = props.posts
 
     const onAddPosts = (values:AddFormType)=> {
@@ -61,7 +61,7 @@ const MyPost:React.ComponentType<MyPostProps> = (props)=>{
             {PostElem}
         </div>
     )
-}
+})
 const MyPostRedux=reduxForm<FormDataType>({form:"addPost"})(MyPostForm)
 
 export default MyPost;
