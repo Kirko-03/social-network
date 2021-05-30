@@ -1,4 +1,5 @@
 import {ActionTypes} from "./store";
+import {updateObjectArray} from "../Forms/FuncHelper";
 
 export type UserPageType = {
     id: number
@@ -46,21 +47,25 @@ const usersReducer = (state: InitialStateType = initialState, action: ActionType
     switch (action.type) {
         case FOLLOW:
             return {
-                ...state, users: state.users.map(u => {
-                    if (u.id === action.userId) {
-                        return {...u, followed: true}
-                    }
-                    return u
-                })
+                ...state,
+        users:updateObjectArray(state.users,action.userId,'id',{ followed: true})
+                // users: state.users.map(u => {
+                //     if (u.id === action.userId) {
+                //         return {...u, followed: true}
+                //     }
+                //     return u
+                // })
             }
         case UNFOLLOW:
             return {
-                ...state, users: state.users.map(u => {
-                    if (u.id === action.userId) {
-                        return {...u, followed: false}
-                    }
-                    return u
-                })
+                 ...state,
+                users:updateObjectArray(state.users,action.userId,'id',{ followed: false})
+                // users: state.users.map(u => {
+                //     if (u.id === action.userId) {
+                //         return {...u, followed: false}
+                //     }
+                //     return u
+                // })
             }
         case SET_USERS:
             return {

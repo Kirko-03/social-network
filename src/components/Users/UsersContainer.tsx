@@ -1,7 +1,7 @@
 import {connect} from "react-redux";
-import Users from "../components/Users/Users";
-import {RootReduxState} from "./redux-store";
-import Preloader from "../components/preloader/preloader";
+
+import {RootReduxState} from "../../redux/redux-store";
+import Preloader from "../preloader/preloader";
 import {
     follow,
     InitialStateType,
@@ -12,9 +12,9 @@ import {
     setUsers,
     unfollow,
     UserPageType
-} from "./usersReducer";
+} from "../../redux/usersReducer";
 import React from "react";
-import {usersAPI} from "../api/api";
+import {usersAPI} from "../../api/api";
 import {compose} from "redux";
 import {
     getCurrentPage,
@@ -23,7 +23,8 @@ import {
     getPageSize,
     getTotalUserCount,
     getUser
-} from "./usersSelector";
+} from "../../redux/usersSelector";
+import {Users} from "./Users";
 
 
 type MapStateToPropsType = {
@@ -49,7 +50,7 @@ export type UsersPropsType = MapStateToPropsType & MapDispatchToPropsType
 export class UsersContainer extends React.Component<UsersPropsType> {
     componentDidMount() {
         this.props.setLoadItem(true)
-        usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then((data: any) => {
+        usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then((data) => {
             this.props.setTotalUserCount(data.totalCount)
         })
     }
@@ -57,7 +58,7 @@ export class UsersContainer extends React.Component<UsersPropsType> {
     onPageChanged = (currentPage: number) => {
         this.props.setCurrentPage(currentPage)
         this.props.setLoadItem(true)
-        usersAPI.getUsers(this.props.currentPage).then((data: any) => {
+        usersAPI.getUsers(this.props.currentPage).then((data) => {
             this.props.setLoadItem(false)
             this.props.setUsers(data.items);
         })
@@ -65,7 +66,7 @@ export class UsersContainer extends React.Component<UsersPropsType> {
     }
 
     render() {
-        return <>
+        return( <>
 
             <Users
                 followingInProgress={this.props.followingInProgress}
@@ -74,7 +75,7 @@ export class UsersContainer extends React.Component<UsersPropsType> {
                 totalUserCount={this.props.totalUserCount} currentPage={this.props.currentPage}
                 usersPage={this.props.usersPage} onPageChanged={this.onPageChanged}/>
             {this.props.loadItem ? <Preloader/> : null}
-        </>
+        </>)
     }
 }
 

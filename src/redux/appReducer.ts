@@ -37,10 +37,8 @@ export const setInitialSuccess = () => {
 export const initializeApp = (): ThunkAction<Promise<void>, RootReduxState, unknown, ActionTypes> => {
     return async (dispatch) => {
         const promise = dispatch(getAuthUserData())
-        Promise.all([promise])
-            .then(()=>
-            dispatch(setInitialSuccess())
-        )
+        await Promise.all([promise])
+        dispatch(setInitialSuccess())
     }
 }
 

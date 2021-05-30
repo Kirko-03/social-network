@@ -47,7 +47,7 @@ let initialState = {
 const ADDPOST = "ADD-POST";
 // const UPDATEADDPOST = "UPDATE-ADD-POST";
 const SETUSERPROFILE = "SET-USER-PROFILE"
-const SETSTATUS="SET-STATUS"
+const SETSTATUS = "SET-STATUS"
 const profileReducer = (state: profilePageType = initialState, action: ActionTypes) => {
 
     switch (action.type) {
@@ -74,24 +74,24 @@ const profileReducer = (state: profilePageType = initialState, action: ActionTyp
                 userProfile: action.userProfile
             }
         }
-           case SETSTATUS:{
-               return {
-                   ...state,
-                   status:action.status
-               }
-                }
+        case SETSTATUS: {
+            return {
+                ...state,
+                status: action.status
+            }
+        }
         default :
             return state
     }
 }
-export const setStatus = (status:string)=>{
-    return{
-        type:SETSTATUS,
-      status:status
-    }as const
+export const setStatus = (status: string) => {
+    return {
+        type: SETSTATUS,
+        status: status
+    } as const
 }
 
-export const addPostAC = (NewTextPost:string) => {
+export const addPostAC = (NewTextPost: string) => {
     return {
         type: ADDPOST,
         NewTextPost
@@ -109,32 +109,25 @@ export const setUserProfile = (userProfile: UserProfileType | null): SetUserProf
         userProfile: userProfile
     } as const
 }
-export const getUserProfile = (userId: number): ThunkAction<Promise<void>, RootReduxState, unknown, ActionTypes> => {
-    return async (dispatch) => {
-        usersAPI.getProfile(userId).then
-        (response => {
+export const getUserProfile = (userId: number): ThunkAction<Promise<void>, RootReduxState, unknown, ActionTypes> =>
+    async (dispatch) => {
+       let response = await usersAPI.getProfile(userId)
+         {
                 dispatch(setUserProfile(response.data))
             }
-        )
-    }
+
 }
-export const getStatus = (userId: number): ThunkAction<Promise<void>, RootReduxState, unknown, ActionTypes> => {
-    return async (dispatch) => {
-        profileAPI.getStatus(userId).then
-        (response => {
-                dispatch(setStatus(response.data))
-            }
-        )
+export const getStatus = (userId: number): ThunkAction<Promise<void>, RootReduxState, unknown, ActionTypes> =>
+    async (dispatch) => {
+        let response = await profileAPI.getStatus(userId)
+        {
+            dispatch(setStatus(response.data))
+        }
     }
-}
-export const updateStatus = (status: string): ThunkAction<Promise<void>, RootReduxState, unknown, ActionTypes> => {
-    return async (dispatch) => {
-        profileAPI.updateStatus(status).then
-        (response => {
-            if(response.data.resultCode === 0)
-                dispatch(setStatus(status))
-            }
-        )
+export const updateStatus = (status: string): ThunkAction<Promise<void>, RootReduxState, unknown, ActionTypes> =>
+    async (dispatch) => {
+        let response = await profileAPI.updateStatus(status)
+        if (response.data.resultCode === 0)
+            dispatch(setStatus(status))
     }
-}
 export default profileReducer

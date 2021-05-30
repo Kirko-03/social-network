@@ -1,11 +1,12 @@
 import React from "react";
-import {Field, InjectedFormProps, reduxForm} from 'redux-form'
+import {InjectedFormProps, reduxForm} from 'redux-form'
 import {login} from "./redux/authReducer";
 import {Input} from "./Forms/FormComponents";
 import {maxLengthCreator, minPasswordCreator, required} from "./validators/validators";
 import {connect} from "react-redux";
 import {RootReduxState} from "./redux/redux-store";
 import {Redirect} from "react-router-dom";
+import {createField} from "./Forms/FuncHelper";
 
 type FormDataType = {
     email: string
@@ -25,25 +26,17 @@ const length = maxLengthCreator(30)
 export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
 
     return (<form onSubmit={props.handleSubmit}>
-        <div>
-            <Field name={"email"} placeholder={"email"} component={Input} validate={[required, length]}/>
-        </div>
-        <div>
-            <Field name={"password"} placeholder={"Password"} type={"password"} component={Input}
-                   validate={[required, password]}/>
-        </div>
-        {props.error && <div style={{color:'red',border:'1px red solid',maxWidth:'200px'}}>
+        {createField('email', 'email', Input, [required, length], {}, '')}
+        {createField("password", "Password", Input, [required, password], {type: "password"}, '')}
+        {props.error && <div style={{color: 'red', border: '1px red solid', maxWidth: '200px'}}>
             {props.error}
         </div>}
-        <div>
-            Remember login
-            <Field name={"rememberMe"} placeholder={"RememberMe"} type={"checkbox"} component={Input}/>
-        </div>
+        {createField("rememberMe", "RememberMe", Input, [], {type: "checkbox"}, 'Remember login')}
+
         <div>
             <button>Login</button>
         </div>
-        {/*<div className='g-recaptcha' data-sitekey={"6LerPNkaAAAAAIxlOiLG6k2Qw6RuIlEpIGBjsBG6"}></div>*/}
-        {/*//6LfHONkaAAAAAKh31W7RkiVJvt1cCJM-BoeCwz-z*/}
+
     </form>)
 }
 

@@ -8,7 +8,7 @@ import {BrowserRouter, Redirect, Route} from "react-router-dom";
 import Friends from "./components/Friends/Friends";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import ProfileContainer from './components/Profile/ProfileContainer';
-import UsersContainer from './redux/UsersContainer';
+import UsersContainer from './components/Users/UsersContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Login from "./Login";
 import {compose} from "redux";
