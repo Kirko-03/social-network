@@ -43,6 +43,7 @@ let Users = (props: UsersFuncType) => {
              </NavLink>
                     <div className={us.inform}>
                         <div>Имя:{u.name}</div>
+                        <div>Id:{u.id}</div>
                         {/*<div>Город:{u.location.cityName}</div>*/}
                         {/*<div>Страна:{u.location.countryName}</div>*/}
                     </div>

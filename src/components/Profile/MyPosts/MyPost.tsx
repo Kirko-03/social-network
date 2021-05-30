@@ -48,7 +48,7 @@ const MyPost:React.ComponentType<MyPostProps> = React.memo(props=>{
     }
     /*    let NewTextPost = profilePage.NewTextPost*/
 
-    let PostElem =posts.map(p => <Post message={p.message} like={p.like}/>)
+    let PostElem = posts.map(p => <Post message={p.message} like={p.like}/>)
 
     // const newTextChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
     //     let body = e.target.value
