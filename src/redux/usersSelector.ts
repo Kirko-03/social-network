@@ -3,9 +3,7 @@ import {RootReduxState} from "./redux-store";
 export const getUser = (state: RootReduxState) => {
     return state.usersPage
 }
-// export const getUserReselect=createSelector(getUser,(usersPage:Array<UserPageType>)=>{
-//   return  usersPage.filter((u)=>true)
-// })
+
 export let getPageSize = (state: RootReduxState) => {
     return state.usersPage.pageSize
 }

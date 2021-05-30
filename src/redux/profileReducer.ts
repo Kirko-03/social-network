@@ -111,18 +111,13 @@ export const setUserProfile = (userProfile: UserProfileType | null): SetUserProf
 }
 export const getUserProfile = (userId: number): ThunkAction<Promise<void>, RootReduxState, unknown, ActionTypes> =>
     async (dispatch) => {
-       let response = await usersAPI.getProfile(userId)
-         {
-                dispatch(setUserProfile(response.data))
-            }
-
-}
+        let response = await usersAPI.getProfile(userId)
+        dispatch(setUserProfile(response.data))
+    }
 export const getStatus = (userId: number): ThunkAction<Promise<void>, RootReduxState, unknown, ActionTypes> =>
     async (dispatch) => {
         let response = await profileAPI.getStatus(userId)
-        {
-            dispatch(setStatus(response.data))
-        }
+        dispatch(setStatus(response.data))
     }
 export const updateStatus = (status: string): ThunkAction<Promise<void>, RootReduxState, unknown, ActionTypes> =>
     async (dispatch) => {

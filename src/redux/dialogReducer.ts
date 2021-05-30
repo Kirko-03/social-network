@@ -14,7 +14,7 @@ let initialState =  {dialogs: [
         {id:2,message: "Как дела придурок?)"},
         {id:3,message: "Игноришь?"}
     ],
-    NewTextMessage:"kokpo"}
+    NewTextMessage:""}
 
 const dialogReducer = (state:dialogsPageType=initialState,action:ActionTypes) => {
 switch(action.type){

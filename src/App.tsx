@@ -12,19 +12,19 @@ import UsersContainer from './components/Users/UsersContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Login from "./Login";
 import {compose} from "redux";
-import {connect, MapStateToProps} from "react-redux";
+import {connect} from "react-redux";
 import {RootReduxState} from "./redux/redux-store";
 import {initializeApp} from "./redux/appReducer";
-import {initialize} from "redux-form";
 import Preloader from "./components/preloader/preloader";
 
 type MapDispatchToPropsType = {
     initializeApp: () => void
 }
-type MapStateToPropsType={
-    initialized:boolean
+type MapStateToPropsType = {
+    initialized: boolean
 }
 type AppPropsType = MapDispatchToPropsType & MapStateToPropsType
+
 class App extends React.Component<AppPropsType> {
 
     componentDidMount() {
@@ -33,8 +33,8 @@ class App extends React.Component<AppPropsType> {
     }
 
     render() {
-        if(!this.props.initialized)
-          return  <Preloader/>
+        if (!this.props.initialized)
+            return <Preloader/>
         debugger
         return (
             <BrowserRouter>
@@ -60,9 +60,10 @@ class App extends React.Component<AppPropsType> {
         );
     }
 }
-let mapStateToProps=(state:RootReduxState)=>{
-    return{
-        initialized:state.app.initialized
+
+let mapStateToProps = (state: RootReduxState) => {
+    return {
+        initialized: state.app.initialized
     }
 }
 

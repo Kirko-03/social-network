@@ -6,16 +6,11 @@ export type UserPageType = {
     name: string
     followed: boolean
     photos: PhotosType
-    // location: LocType
 }
 type PhotosType = {
     small: string
-    large:string
+    large: string
 }
-// type LocType = {
-//     countryName: string
-//     cityName: string
-// }
 
 export type InitialStateType = {
 
@@ -48,24 +43,12 @@ const usersReducer = (state: InitialStateType = initialState, action: ActionType
         case FOLLOW:
             return {
                 ...state,
-        users:updateObjectArray(state.users,action.userId,'id',{ followed: true})
-                // users: state.users.map(u => {
-                //     if (u.id === action.userId) {
-                //         return {...u, followed: true}
-                //     }
-                //     return u
-                // })
+                users: updateObjectArray(state.users, action.userId, 'id', {followed: true})
             }
         case UNFOLLOW:
             return {
-                 ...state,
-                users:updateObjectArray(state.users,action.userId,'id',{ followed: false})
-                // users: state.users.map(u => {
-                //     if (u.id === action.userId) {
-                //         return {...u, followed: false}
-                //     }
-                //     return u
-                // })
+                ...state,
+                users: updateObjectArray(state.users, action.userId, 'id', {followed: false})
             }
         case SET_USERS:
             return {

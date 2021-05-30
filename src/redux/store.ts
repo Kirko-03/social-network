@@ -1,12 +1,5 @@
 import dialogReducer, {addMessageAC, updateMessageAC} from "./dialogReducer";
-import profileReducer, {
-    addPostAC,
-    setStatus,
-    getUserProfile,
-    setUserProfile,
-    // updateAddPostAC,
-    UserProfileType,
-} from "./profileReducer";
+import profileReducer, {addPostAC, setStatus, setUserProfile, UserProfileType} from "./profileReducer";
 import {
     follow,
     setCurrentPage,
@@ -32,10 +25,9 @@ export type dialogsPageType = {
 
 export type profilePageType = {
     posts: Array<PostType>
-    // NewTextPost: string
     userProfile: UserProfileType | null
-    isAuth:boolean,
-    status:string
+    isAuth: boolean,
+    status: string
 }
 export type friendsPageType = {
     friends: Array<friendsType>
@@ -63,14 +55,12 @@ export type StoreType = {
     addMessage: (messageText: string) => void
     subscribe: (observer: () => void) => void
     _onChange: () => void
-    // updateAddPost: (t: string) => void
     updateMessage: (newMessage: string) => void
     getState: () => RootStateType
     dispatch: (action: ActionTypes) => void
 }
 export type ActionTypes = ReturnType<typeof addPostAC> |
-    // ReturnType<typeof updateAddPostAC> |
-    ReturnType<typeof setInitialSuccess>|
+    ReturnType<typeof setInitialSuccess> |
     ReturnType<typeof updateMessageAC> |
     ReturnType<typeof addMessageAC> | ReturnType<typeof follow> |
     ReturnType<typeof unfollow> |
@@ -78,8 +68,8 @@ export type ActionTypes = ReturnType<typeof addPostAC> |
     ReturnType<typeof setCurrentPage> |
     ReturnType<typeof setTotalUserCount> |
     ReturnType<typeof setLoadItem> | ReturnType<typeof setUserProfile>
-    | ReturnType<typeof setAuthUserData> | ReturnType<typeof setToggleFriends>|
-    ReturnType<typeof setStatus>|ReturnType<typeof setStatus>
+    | ReturnType<typeof setAuthUserData> | ReturnType<typeof setToggleFriends> |
+    ReturnType<typeof setStatus> | ReturnType<typeof setStatus>
 
 
 export type friendsType = {
@@ -100,10 +90,6 @@ export let store: StoreType = {
         this._state.profilePage.posts.push(newPost);
         this._onChange()
     },
-    // updateAddPost(newText: string) {
-    //     this._state.profilePage.NewTextPost = newText
-    //     this._onChange()
-    // },
     updateMessage(newMessage: string) {
         this._state.dialogsPage.NewTextMessage = newMessage
         this._onChange()
@@ -142,10 +128,9 @@ export let store: StoreType = {
                 {message: "Learn Pituhon(((", like: -13},
                 {message: "LOSEEER", like: 187},
                 {message: "Соси пинчер", like: 100}],
-            // NewTextPost: "it-camasutra",
             userProfile: null,
-            isAuth:false,
-            status:""
+            isAuth: false,
+            status: ""
 
         },
         friendsPage: {

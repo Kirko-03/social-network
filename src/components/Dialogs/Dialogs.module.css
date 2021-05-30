@@ -4,13 +4,16 @@
     height:300px;
 }
 .dialogs{
-    text-align: right;
+    text-align: left;
     padding: 5px;
     grid-area:b;
     display:grid;
     grid-template-columns:2fr 10fr ;background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(37,210,161,1) 0%, rgba(213,175,37,1) 0%, rgba(45,253,72,1) 100%);
-    color:white;
+    color:black;
     min-height:575px;
+}
+.message{
+    text-align: right;
 }
 .dialogsItems .active{
 color:yellow;
