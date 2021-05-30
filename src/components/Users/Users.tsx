@@ -21,7 +21,6 @@ export let Users = (props: UsersFuncType) => {
                        onPageChanged={props.onPageChanged}
                        currentPage={props.currentPage}
                        pageSize={props.pageSize}/>
-
             <User followingInProgress={props.followingInProgress} setToggleFriends={props.setToggleFriends}
                   unfollow={props.unfollow} follow={props.follow} usersPage={props.usersPage} />
     </>
