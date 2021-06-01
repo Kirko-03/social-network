@@ -12,8 +12,8 @@ import UsersContainer from './components/Users/UsersContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Login from "./Login";
 import {compose} from "redux";
-import {connect} from "react-redux";
-import {RootReduxState} from "./redux/redux-store";
+import {connect, Provider} from "react-redux";
+import store, {RootReduxState} from "./redux/redux-store";
 import {initializeApp} from "./redux/appReducer";
 import Preloader from "./components/preloader/preloader";
 
@@ -38,10 +38,10 @@ class App extends React.Component<AppPropsType> {
         debugger
         return (
             <BrowserRouter>
-                <div className="app-writter">
+                <div className="app-writer">
                     <HeaderContainer/>
                     <Navbar/>
-                    <div className="app-writter-body">
+                    <div className="app-writer-body">
                         <Redirect to={'/profile'}/>
                         <Route path='/dialogs' render={() => <DialogsContainer/>}/>
                         <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
@@ -66,5 +66,11 @@ let mapStateToProps = (state: RootReduxState) => {
         initialized: state.app.initialized
     }
 }
-
-export default compose<React.ComponentType>(connect<MapStateToPropsType, MapDispatchToPropsType, {}, RootReduxState>(mapStateToProps, {initializeApp}))(App)
+let SocialNetApp = () =>
+    <BrowserRouter>
+    <Provider store={store}>
+        <AppContainer/>
+    </Provider>
+</BrowserRouter>
+let AppContainer =  compose<React.ComponentType>(connect<MapStateToPropsType, MapDispatchToPropsType, {}, RootReduxState>(mapStateToProps, {initializeApp}))(App)
+export default SocialNetApp
