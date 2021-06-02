@@ -16,7 +16,7 @@ export type InitialStateType = {
 
     users: Array<UserPageType>
     pageSize: number
-    totalUserCount: number
+    totalItemsCount: number
     currentPage: number
     loadItem: boolean
     followingInProgress: any[]
@@ -32,7 +32,7 @@ const SET_TOGGLE_FRIENDS = "SET_TOGGLE_FRIENDS"
 const initialState: InitialStateType = {
     users: [],
     pageSize: 4,
-    totalUserCount: 0,
+    totalItemsCount: 0,
     currentPage: 1,
     loadItem: true,
     followingInProgress: []
@@ -57,7 +57,7 @@ const usersReducer = (state: InitialStateType = initialState, action: ActionType
             }
         case SET_TOTAL_USER_COUNT:
             return {
-                ...state, totalUserCount: action.totalCount
+                ...state, totalItemsCount: action.totalCount
             }
         case SET_CURRENT_PAGE:
             return {
@@ -106,7 +106,7 @@ export const setCurrentPage = (currentPage: number) => {
     } as const
 }
 
-export const setTotalUserCount = (totalCount: number) => {
+export const setTotalItemsCount = (totalCount: number) => {
     return {
         type: SET_TOTAL_USER_COUNT,
         totalCount

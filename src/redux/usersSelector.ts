@@ -7,8 +7,8 @@ export const getUser = (state: RootReduxState) => {
 export let getPageSize = (state: RootReduxState) => {
     return state.usersPage.pageSize
 }
-export let getTotalUserCount = (state: RootReduxState) => {
-    return state.usersPage.totalUserCount
+export let getTotalItemsCount = (state: RootReduxState) => {
+    return state.usersPage.totalItemsCount
 }
 export let getCurrentPage = (state: RootReduxState) => {
     return state.usersPage.currentPage

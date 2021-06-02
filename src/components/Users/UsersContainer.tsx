@@ -8,7 +8,7 @@ import {
     setCurrentPage,
     setLoadItem,
     setToggleFriends,
-    setTotalUserCount,
+    setTotalItemsCount,
     setUsers,
     unfollow,
     UserPageType
@@ -21,7 +21,7 @@ import {
     getFollowingInProgress,
     getLoadItem,
     getPageSize,
-    getTotalUserCount,
+    getTotalItemsCount,
     getUser
 } from "../../redux/usersSelector";
 import {Users} from "./Users";
@@ -30,7 +30,7 @@ import {Users} from "./Users";
 type MapStateToPropsType = {
     usersPage: InitialStateType
     pageSize: number
-    totalUserCount: number
+    totalItemsCount: number
     currentPage: number
     loadItem: boolean
     followingInProgress: any[]
@@ -41,7 +41,7 @@ type MapDispatchToPropsType = {
     setCurrentPage: (pageNumber: number) => void
     setUsers: (users: Array<UserPageType>) => void
     setLoadItem: (loadItem: boolean) => void
-    setTotalUserCount: (totalUserCount: number) => void
+    setTotalItemsCount: (totalItemsCount: number) => void
     setToggleFriends: (loadItem: boolean, userId: number) => void
 }
 
@@ -51,7 +51,7 @@ export class UsersContainer extends React.Component<UsersPropsType> {
     componentDidMount() {
         this.props.setLoadItem(true)
         usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then((data) => {
-            this.props.setTotalUserCount(data.totalCount)
+            this.props.setTotalItemsCount(data.totalCount)
         })
     }
 
@@ -66,13 +66,13 @@ export class UsersContainer extends React.Component<UsersPropsType> {
     }
 
     render() {
-        return( <>
+        return (<>
 
             <Users
                 followingInProgress={this.props.followingInProgress}
                 setToggleFriends={this.props.setToggleFriends} follow={this.props.follow} unfollow={this.props.unfollow}
                 pageSize={this.props.pageSize}
-                totalUserCount={this.props.totalUserCount} currentPage={this.props.currentPage}
+                totalItemsCount={this.props.totalItemsCount} currentPage={this.props.currentPage}
                 usersPage={this.props.usersPage} onPageChanged={this.onPageChanged}/>
             {this.props.loadItem ? <Preloader/> : null}
         </>)
@@ -84,7 +84,7 @@ let mapStateToProps = (state: RootReduxState): MapStateToPropsType => {
     return {
         usersPage: getUser(state),
         pageSize: getPageSize(state),
-        totalUserCount: getTotalUserCount(state),
+        totalItemsCount: getTotalItemsCount(state),
         currentPage: getCurrentPage(state),
         loadItem: getLoadItem(state),
         followingInProgress: getFollowingInProgress(state)
@@ -94,6 +94,6 @@ let mapStateToProps = (state: RootReduxState): MapStateToPropsType => {
 
 export default compose(connect<MapStateToPropsType, MapDispatchToPropsType, {}, RootReduxState>(mapStateToProps, {
     follow, unfollow,
-    setUsers, setCurrentPage, setTotalUserCount, setLoadItem, setToggleFriends
+    setUsers, setCurrentPage, setTotalItemsCount, setLoadItem, setToggleFriends
 })(UsersContainer))
 

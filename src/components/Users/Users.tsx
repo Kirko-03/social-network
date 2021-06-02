@@ -7,7 +7,7 @@ export type UsersFuncType = {
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     pageSize: number
-    totalUserCount: number
+    totalItemsCount: number
     currentPage: number
     usersPage: InitialStateType
     onPageChanged: (currentPage: number) => void
@@ -17,7 +17,7 @@ export type UsersFuncType = {
 
 export let Users = (props: UsersFuncType) => {
     return( <>
-            <Paginator totalUserCount={props.totalUserCount}
+            <Paginator totalItemsCount={props.totalItemsCount}
                        onPageChanged={props.onPageChanged}
                        currentPage={props.currentPage}
                        pageSize={props.pageSize}/>
