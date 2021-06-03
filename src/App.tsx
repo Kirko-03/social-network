@@ -4,7 +4,7 @@ import Navbar from './components/Navbar/Navbar';
 import News from "./components/News/News"
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import {BrowserRouter, Redirect, Route} from "react-router-dom";
+import {BrowserRouter, HashRouter, Redirect, Route} from "react-router-dom";
 import Friends from "./components/Friends/Friends";
 import HeaderContainer from './components/Header/HeaderContainer';
 import Login from "./Login";
@@ -81,10 +81,10 @@ let mapStateToProps = (state: RootReduxState) => {
     }
 }
 let SocialNetApp = () =>
-    <BrowserRouter>
+    <HashRouter>
     <Provider store={store}>
         <AppContainer/>
     </Provider>
-</BrowserRouter>
+</HashRouter>
 let AppContainer =  compose<React.ComponentType>(connect<MapStateToPropsType, MapDispatchToPropsType, {}, RootReduxState>(mapStateToProps, {initializeApp}))(App)
 export default SocialNetApp
