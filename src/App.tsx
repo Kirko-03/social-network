@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {lazy, Suspense} from 'react';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import News from "./components/News/News"
@@ -6,9 +6,6 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import {BrowserRouter, Redirect, Route} from "react-router-dom";
 import Friends from "./components/Friends/Friends";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import ProfileContainer from './components/Profile/ProfileContainer';
-import UsersContainer from './components/Users/UsersContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Login from "./Login";
 import {compose} from "redux";
@@ -16,6 +13,10 @@ import {connect, Provider} from "react-redux";
 import store, {RootReduxState} from "./redux/redux-store";
 import {initializeApp} from "./redux/appReducer";
 import Preloader from "./components/preloader/preloader";
+import {lazyComponent} from "./RedirectHOC";
+let ProfileContainer = lazy(()=>import('./components/Profile/ProfileContainer'))
+let DialogsContainer = lazy(()=>import('./components/Dialogs/DialogsContainer'))
+let UsersContainer = lazy(()=>import('./components/Users/UsersContainer'))
 
 type MapDispatchToPropsType = {
     initializeApp: () => void
@@ -43,9 +44,22 @@ class App extends React.Component<AppPropsType> {
                     <Navbar/>
                     <div className="app-writer-body">
                         <Redirect to={'/profile'}/>
-                        <Route path='/dialogs' render={() => <DialogsContainer/>}/>
-                        <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
-                        <Route path='/users' render={() => <UsersContainer/>}/>
+                        <Route path='/dialogs' render={() => {
+                            return(<Suspense fallback={<Preloader/>}>
+                                {lazyComponent(DialogsContainer)}
+                            </Suspense>)
+                        }
+                        }/>
+                        <Route path='/profile/:userId?' render={() => {
+                            return(<Suspense fallback={<Preloader/>}>
+                                {lazyComponent(ProfileContainer)}
+                            </Suspense>)
+                        }}/>
+                        <Route path='/users' render={() =>{
+                            return(<Suspense fallback={<Preloader/>}>
+                                {lazyComponent(UsersContainer)}
+                            </Suspense>)
+                        } }/>
                         <Route path='/news' render={() => <News/>}/>
                         <Route path='/music' render={() => <Music/>}/>
                         <Route path='/settings' render={() => <Settings/>}/>

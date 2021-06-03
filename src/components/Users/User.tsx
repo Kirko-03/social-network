@@ -14,7 +14,7 @@ type UserPageType = {
 }
 
 export const User = (props:UserPageType ) => {
-    return(<>
+    return(<div>
             {
                 props.usersPage.users.map((u) => <div>
 
@@ -56,5 +56,5 @@ export const User = (props:UserPageType ) => {
                     </span>
                     </div>
                 </div>)
-            }</>
+            }</div>
     )}
