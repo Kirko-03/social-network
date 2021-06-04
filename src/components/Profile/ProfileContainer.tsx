@@ -5,7 +5,6 @@ import {RootReduxState} from "../../redux/redux-store";
 
 import {Redirect, RouteComponentProps, withRouter} from 'react-router-dom';
 import {getStatus, getUserProfile, updateStatus, UserProfileType} from '../../redux/profileReducer';
-import {withAuthRedirect} from "../../RedirectHOC";
 import {compose} from "redux";
 
 type ParamProps = {
@@ -15,13 +14,13 @@ type ParamProps = {
 type MapStateToPropsType = {
     userProfile: UserProfileType | null
     isAuth: boolean
-    status:string
+    status: string
     authorizedId: number | null
 }
 type MapDispatchToPropsType = {
     getUserProfile: (userId: number) => void
-    getStatus:(userId: number) => void
-    updateStatus:(status:string)=>void
+    getStatus: (userId: number) => void
+    updateStatus: (status: string) => void
 }
 
 export type ProfilePropsType = MapStateToPropsType & MapDispatchToPropsType
@@ -31,42 +30,41 @@ let mapStateToProps = (state: RootReduxState) => {
         isAuth: state.auth.isAuth,
         userProfile: state.profilePage.userProfile,
         status: state.profilePage.status,
-        authorizedId:state.auth.id
+        authorizedId: state.auth.id
     }
 }
 
+
 class ProfileContainer extends React.Component<PropsType> {
-
-
-    componentDidMount() {
-
-
+    componentLifeCycle(){
         let userId = this.props.match.params.userId
         if (!userId) {
-            userId =this.props.authorizedId
-            if(!userId){
+            userId = this.props.authorizedId
+            if (!userId) {
 
-            this.props.history.push("/login")
+                this.props.history.push("/login")
             }
         }
-
         this.props.getUserProfile(userId)
         this.props.getStatus(userId)
-
-
     }
 
+    componentDidMount() {
+        this.componentLifeCycle()
+    }
+componentDidUpdate(prevProps: Readonly<PropsType>, prevState: Readonly<{}>, snapshot?: any) {
+        this.componentLifeCycle()
+}
 
     render() {
-        if(!this.props.isAuth)return <Redirect to={'/login'}/>
-        return <Profile  userProfile={this.props.userProfile}
+        if (!this.props.isAuth) return <Redirect to={'/login'}/>
+        return <Profile userProfile={this.props.userProfile}
                         status={this.props.status}
                         updateStatus={this.props.updateStatus}
         />
     }
 
 }
-
 
 
 export default compose<React.ComponentType>(withRouter, connect<MapStateToPropsType, MapDispatchToPropsType, {}, RootReduxState>(mapStateToProps, {
