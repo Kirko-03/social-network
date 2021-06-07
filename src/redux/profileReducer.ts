@@ -48,6 +48,7 @@ const ADDPOST = "ADD-POST";
 // const UPDATEADDPOST = "UPDATE-ADD-POST";
 const SETUSERPROFILE = "SET-USER-PROFILE"
 const SETSTATUS = "SET-STATUS"
+const SETPHOTO = "SET-PHOTO"
 const profileReducer = (state: profilePageType = initialState, action: ActionTypes) => {
 
     switch (action.type) {
@@ -74,12 +75,16 @@ const profileReducer = (state: profilePageType = initialState, action: ActionTyp
                 userProfile: action.userProfile
             }
         }
+        case SETPHOTO:{
+            return{...state,profile:{...state.userProfile,photos:action.photos}}
+        }
         case SETSTATUS: {
             return {
                 ...state,
                 status: action.status
             }
         }
+
         default :
             return state
     }
@@ -90,7 +95,12 @@ export const setStatus = (status: string) => {
         status: status
     } as const
 }
-
+export const setPhoto = (photos:any)=>{
+    return{
+    type:SETPHOTO,
+        photos:photos
+    } as const
+}
 export const addPostAC = (NewTextPost: string) => {
     return {
         type: ADDPOST,
@@ -124,5 +134,11 @@ export const updateStatus = (status: string): ThunkAction<Promise<void>, RootRed
         let response = await profileAPI.updateStatus(status)
         if (response.data.resultCode === 0)
             dispatch(setStatus(status))
+    }
+export const savePhoto = (file: string): ThunkAction<Promise<void>, RootReduxState, unknown, ActionTypes> =>
+    async (dispatch) => {
+        let response = await profileAPI.newPhoto(file)
+        if (response.data.resultCode === 0)
+            dispatch(setPhoto(response.data.data.photos))
     }
 export default profileReducer

@@ -1,5 +1,5 @@
 import dialogReducer, {addMessageAC, updateMessageAC} from "./dialogReducer";
-import profileReducer, {addPostAC, setStatus, setUserProfile, UserProfileType} from "./profileReducer";
+import profileReducer, {addPostAC, setPhoto, setStatus, setUserProfile, UserProfileType} from "./profileReducer";
 import {
     follow,
     setCurrentPage,
@@ -69,7 +69,7 @@ export type ActionTypes = ReturnType<typeof addPostAC> |
     ReturnType<typeof setTotalItemsCount> |
     ReturnType<typeof setLoadItem> | ReturnType<typeof setUserProfile>
     | ReturnType<typeof setAuthUserData> | ReturnType<typeof setToggleFriends> |
-    ReturnType<typeof setStatus> | ReturnType<typeof setStatus>
+    ReturnType<typeof setStatus> | ReturnType<typeof setStatus>|ReturnType<typeof setPhoto>
 
 
 export type friendsType = {
