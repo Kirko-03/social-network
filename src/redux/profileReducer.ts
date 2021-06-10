@@ -141,4 +141,11 @@ export const savePhoto = (file: string): ThunkAction<Promise<void>, RootReduxSta
         if (response.data.resultCode === 0)
             dispatch(setPhoto(response.data.data.photos))
     }
+// export const saveProfile = (profile:UserProfileType): ThunkAction<Promise<void>, RootReduxState, unknown, ActionTypes> =>
+//     async (dispatch) => {
+//     const userId = getState()
+//         let response = await profileAPI.newProfile(profile)
+//         if (response.data.resultCode === 0)
+//             dispatch(setPhoto(response.data))
+//     }
 export default profileReducer

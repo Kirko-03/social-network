@@ -1,15 +1,31 @@
 import {UserProfileType} from "../../redux/profileReducer";
 type ContactType = {
-    userProfile:UserProfileType | null
+    userProfile:UserProfileType
+    isOwner:boolean
+    goToEditMode:()=>void
+
+}
+type InfoType={
+    contactTitle:string
+    contactValue:string
 }
 
 export const DefaultProfile=(props:ContactType)=>{
+    const userProfile=props.userProfile
+    const Contacts = ({contactTitle,contactValue}:InfoType) =>{
+return <div><b>{contactTitle}</b>:{contactValue}</div>
+    }
     return(
-        <div>
-        <div>Full name:{props.userProfile?.fullName}</div>
-    <div>About me:{props.userProfile?.aboutMe}</div>
-            <div>Looking for A job:{props.userProfile?.lookingForAJob}</div>
-            <div>Looking for A job description:{props.userProfile?.lookingForAJobDescription}</div>
 
+        <div>
+            {props.isOwner&&<button onClick={props.goToEditMode}>edit</button>}
+        <div>Full name:{userProfile?.fullName}</div>
+    <div>About me:{userProfile?.aboutMe}</div>
+            <div>Looking for A job:{userProfile?.lookingForAJob?'yes':'no'}</div>
+            <div>My skills:{userProfile?.lookingForAJobDescription}</div>
+        <div><b>Contacts</b>:{Object.keys(userProfile.contacts).map(key=>{
+           // @ts-ignore
+            return <div style={{paddingLeft:'10px'}}><Contacts  key={key} contactTitle={key} contactValue={userProfile.contacts[key]}  /></div>
+        })}</div>
         </div>)
             }

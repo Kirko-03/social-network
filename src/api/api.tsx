@@ -1,4 +1,5 @@
 import axios from "axios";
+import {UserProfileType} from "../redux/profileReducer";
 
 const instance = axios.create({
     withCredentials: true,
@@ -46,6 +47,9 @@ const formData=new FormData()
                 'Content-Type':'multipart/form-data'
             }
         })
+    },
+    newProfile(profile:UserProfileType){
+
     }
 }
 export const authAPI = {

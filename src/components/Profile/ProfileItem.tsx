@@ -1,26 +1,24 @@
-import React from 'react';
-import { FC } from 'react';
-import { ChangeEvent } from 'react';
-import {Link} from 'react-router-dom';
+import React, {ChangeEvent, useState} from 'react';
 
 import userPhoto from "../../nophoto.png";
-import { UserProfileType } from '../../redux/profileReducer';
+import {UserProfileType} from '../../redux/profileReducer';
 import Preloader from '../preloader/preloader';
 import {DefaultProfile} from "./DefaultProfileMode";
+import {EditModeProfile} from './ProfileData';
 
 
 type ProfileType = {
     userProfile: UserProfileType | null
-    isOwner:boolean
-    savePhoto:(file:string)=>void
+    isOwner: boolean
+    savePhoto: (file: string) => void
 }
 const ProfileItem = (props: ProfileType) => {
-    let onPhotoSelected = (e:ChangeEvent<any>)=>{
+    let [editMode, setEditMode] = useState(false)
+    let onPhotoSelected = (e: ChangeEvent<any>) => {
 
-       if(e.target.files)
-{
-    props.savePhoto(e.target.files[0])
-}
+        if (e.target.files) {
+            props.savePhoto(e.target.files[0])
+        }
     }
 
     if (props.userProfile === null) {
@@ -34,14 +32,12 @@ const ProfileItem = (props: ProfileType) => {
                 />
 
             </div>
-            <div >
+            <div>
                 {
-                    <img style={{width:"300px",height:"300px"}} src={props.userProfile?.photos.large ? props.userProfile?.photos.large : userPhoto}/>
+                    <img style={{width: "300px", height: "300px"}}
+                         src={props.userProfile?.photos.large ? props.userProfile?.photos.large : userPhoto}/>
                 }
-                {props.isOwner&& <input type={'file'} onChange={onPhotoSelected}/>}
-
-                <div>Full name:{props.userProfile?.fullName}</div>
-                <div>About me:{props.userProfile?.aboutMe}</div>
+                {props.isOwner && <input type={'file'} onChange={onPhotoSelected}/>}
                 {/*<div>*/}
                 {/*    Contacts:*/}
                 {/*    {props.userProfile?.contacts.facebook ?*/}
@@ -70,7 +66,14 @@ const ProfileItem = (props: ProfileType) => {
                 {/*        <div>Looking for A job description:{props.userProfile?.lookingForAJobDescription}</div> : null*/}
                 {/*    }*/}
                 {/*</div>*/}
-                <DefaultProfile userProfile={props.userProfile}/>
+                {editMode ? <div><EditModeProfile goToEditMode={() => {
+                        setEditMode(false)
+                    }}  isOwner={props.isOwner} userProfile={props.userProfile}/></div> :
+                    <div><DefaultProfile goToEditMode={() => {
+                        setEditMode(true)
+                    }} isOwner={props.isOwner}   userProfile={props.userProfile}/></div>}
+
+
             </div>
         </div>
     )

@@ -26,17 +26,17 @@ useEffect(()=>{
           const  onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
 setStatus(e.currentTarget.value)
         }
-        return <div>
-            <div>
+        return <span>Status:
+            <span>
                 {editMode &&
                 <input value={status} onChange={onStatusChange} onBlur={deactivateEditMode}
                        autoFocus/>}
-            </div>
-            <div>
+            </span>
+            <span>
 
                 {!editMode && <span onClick={activeEditMode}>{status || "-"}</span>}
-            </div>
-        </div>
+            </span>
+        </span>
     }
 
 
