@@ -2,6 +2,7 @@ import {ActionTypes, PostType, profilePageType} from "./store";
 import {profileAPI, usersAPI} from "../api/api";
 import {ThunkAction} from "redux-thunk";
 import {RootReduxState} from "./redux-store";
+import {FormDataType} from "../components/Profile/ProfileData";
 
 type SetUserProfileAC = {
     type: "SET-USER-PROFILE"
@@ -141,11 +142,14 @@ export const savePhoto = (file: string): ThunkAction<Promise<void>, RootReduxSta
         if (response.data.resultCode === 0)
             dispatch(setPhoto(response.data.data.photos))
     }
-// export const saveProfile = (profile:UserProfileType): ThunkAction<Promise<void>, RootReduxState, unknown, ActionTypes> =>
-//     async (dispatch) => {
-//     const userId = getState()
-//         let response = await profileAPI.newProfile(profile)
-//         if (response.data.resultCode === 0)
-//             dispatch(setPhoto(response.data))
-//     }
+export const saveProfile = (profile:FormDataType): ThunkAction<Promise<void>, RootReduxState, unknown, ActionTypes> =>
+    async (dispatch,getState) => {
+    const userId = getState().auth.id
+        let response = await profileAPI.newProfile(profile)
+        if (response.data.resultCode === 0)
+            debugger
+            if(userId)
+                dispatch(getUserProfile(userId))
+
+}
 export default profileReducer

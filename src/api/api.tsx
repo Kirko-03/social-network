@@ -1,5 +1,5 @@
 import axios from "axios";
-import {UserProfileType} from "../redux/profileReducer";
+import {FormDataType} from "../components/Profile/ProfileData";
 
 const instance = axios.create({
     withCredentials: true,
@@ -14,8 +14,8 @@ const instance = axios.create({
 export const usersAPI = {
     async getUsers(currentPage = 2, pageSize = 5) {
         let response = await instance.get(`/users?page=${currentPage}&count=${pageSize}`)
-            if (response.data)
-                return response.data
+        if (response.data)
+            return response.data
     },
     deleteUser(id: number) {
         return instance.delete(`/follow/${id}`)
@@ -39,17 +39,18 @@ export const profileAPI = {
     updateStatus(status: string) {
         return instance.put(`/profile/status`, {status: status})
     },
-    newPhoto(file:string){
-const formData=new FormData()
-        formData.append('image',file)
-        return instance.put(`/profile/photo`,formData,{
-            headers:{
-                'Content-Type':'multipart/form-data'
+    newPhoto(file: string) {
+        const formData = new FormData()
+        formData.append('image', file)
+        return instance.put(`/profile/photo`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
             }
         })
     },
-    newProfile(profile:UserProfileType){
+    newProfile(profile: FormDataType) {
 
+        return instance.put(`/profile`, profile)
     }
 }
 export const authAPI = {

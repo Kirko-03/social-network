@@ -19,13 +19,15 @@ return <div><b>{contactTitle}</b>:{contactValue}</div>
 
         <div>
             {props.isOwner&&<button onClick={props.goToEditMode}>edit</button>}
-        <div>Full name:{userProfile?.fullName}</div>
-    <div>About me:{userProfile?.aboutMe}</div>
-            <div>Looking for A job:{userProfile?.lookingForAJob?'yes':'no'}</div>
-            <div>My skills:{userProfile?.lookingForAJobDescription}</div>
-        <div><b>Contacts</b>:{Object.keys(userProfile.contacts).map(key=>{
-           // @ts-ignore
-            return <div style={{paddingLeft:'10px'}}><Contacts  key={key} contactTitle={key} contactValue={userProfile.contacts[key]}  /></div>
-        })}</div>
+        <div>Full name:{userProfile.fullName}</div>
+    <div>About me:{userProfile.aboutMe}</div>
+            <div>Looking for A job:{userProfile.lookingForAJob?'yes':'no'}</div>
+            <div>My skills:{userProfile.lookingForAJobDescription}</div>
+
+            <div><b>Contacts</b>:{Object.keys(userProfile.contacts).map(key=>{
+                // @ts-ignore
+                return <div style={{paddingLeft:'10px'}}><Contacts  key={key} contactTitle={key} contactValue={userProfile.contacts[key]}  /></div>
+            })}</div>
+
         </div>)
             }

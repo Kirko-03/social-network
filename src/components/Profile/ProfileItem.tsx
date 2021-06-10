@@ -1,16 +1,17 @@
 import React, {ChangeEvent, useState} from 'react';
 
 import userPhoto from "../../nophoto.png";
-import {UserProfileType} from '../../redux/profileReducer';
+import {saveProfile, UserProfileType} from '../../redux/profileReducer';
 import Preloader from '../preloader/preloader';
 import {DefaultProfile} from "./DefaultProfileMode";
-import {EditModeProfile} from './ProfileData';
+import {EditModeProfile, FormDataType} from './ProfileData';
 
 
 type ProfileType = {
     userProfile: UserProfileType | null
     isOwner: boolean
     savePhoto: (file: string) => void
+    saveProfile :(profile:FormDataType)=>void
 }
 const ProfileItem = (props: ProfileType) => {
     let [editMode, setEditMode] = useState(false)
@@ -20,21 +21,25 @@ const ProfileItem = (props: ProfileType) => {
             props.savePhoto(e.target.files[0])
         }
     }
-
+    const onSubmit = (formData: FormDataType) => {
+        saveProfile(formData)
+        setEditMode(false)
+    }
     if (props.userProfile === null) {
         return <Preloader/>
     }
+    debugger
     return (
         <div>
             <div>
-                <img
+                <img alt={'img'}
                     src='https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072823__340.jpg'
                 />
 
             </div>
             <div>
                 {
-                    <img style={{width: "300px", height: "300px"}}
+                    <img alt='ava' style={{width: "300px", height: "300px"}}
                          src={props.userProfile?.photos.large ? props.userProfile?.photos.large : userPhoto}/>
                 }
                 {props.isOwner && <input type={'file'} onChange={onPhotoSelected}/>}
@@ -66,9 +71,7 @@ const ProfileItem = (props: ProfileType) => {
                 {/*        <div>Looking for A job description:{props.userProfile?.lookingForAJobDescription}</div> : null*/}
                 {/*    }*/}
                 {/*</div>*/}
-                {editMode ? <div><EditModeProfile goToEditMode={() => {
-                        setEditMode(false)
-                    }}  isOwner={props.isOwner} userProfile={props.userProfile}/></div> :
+                {editMode ? <div><EditModeProfile userProfile={props.userProfile} initialValues={props.userProfile} onSubmit={onSubmit} /></div> :
                     <div><DefaultProfile goToEditMode={() => {
                         setEditMode(true)
                     }} isOwner={props.isOwner}   userProfile={props.userProfile}/></div>}
@@ -76,6 +79,5 @@ const ProfileItem = (props: ProfileType) => {
 
             </div>
         </div>
-    )
-}
+    )}
 export default ProfileItem;
