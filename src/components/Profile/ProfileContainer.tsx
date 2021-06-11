@@ -70,7 +70,7 @@ componentDidUpdate(prevProps: Readonly<PropsType>) {
 
 
     render() {
-        if (!this.props.isAuth) return <Redirect to={'/login'}/>
+         if (!this.props.isAuth) return <Redirect to={'/profile'}/>
         return <Profile userProfile={this.props.userProfile}
                         isOwner={!this.props.match.params.userId}
                         status={this.props.status}

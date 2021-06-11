@@ -1,54 +1,59 @@
 import React from 'react';
-import {UserProfileType} from "../../redux/profileReducer";
-import {createField} from "../../Forms/FuncHelper";
-import {Input, Textarea} from '../../Forms/FormComponents';
-import {InjectedFormProps, reduxForm} from 'redux-form';
-
-type ContactType = {
-    initialValues: UserProfileType
+import {ContactsType, UserProfileType} from "../../redux/profileReducer";
+import {createField, createFormikField} from "../../Forms/FuncHelper";
+// import {Input, Textarea} from '../../Forms/FormComponents';
+import {Form, Formik} from 'formik';
+export type FormDataType = {
     userProfile: UserProfileType
     onSubmit: (profile: FormDataType) => void
 }
-
-
-export type FormDataType = {
-    aboutMe: string
-    fullName: string
-    lookingForAJob: boolean
-    lookingForAJobDescription: string
-
-    // Contacts:Object
-}
-
-export const EditProfileModeForm: React.FC<InjectedFormProps<FormDataType>> = (props, userProfile: UserProfileType) => {
-
-    return <form onSubmit={props.handleSubmit}>
-        <button>save</button>
-        <div>
-            {createField('fullName', 'Full name', Input, [], [], ' Full name:')}
-        </div>
-        <div>
-            {createField('aboutMe', 'About me', Textarea, [], '', 'About me:')}
-        </div>
-        <div>
-            {createField('lookingForAJob', 'Looking for A job', Input, [], {type: 'checkbox'}, 'looking for A job:')}
-        </div>
-        <div>
-            {createField('lookingForAJobDescription', 'My skills', Textarea, [], '', 'My skills:')}
-        </div>
-        <div>
-            <b>Contacts</b>:{Object.keys(userProfile).map(key => {
-            return <div>
-                <b>{key}:{createField('contacts.' + key, key, Input, [], [], '')}</b>
-            </div>
-        })}
-        </div>
-    </form>
-}
-const ProfileRedux = reduxForm<FormDataType>({form: 'profile'})(EditProfileModeForm)
-export const EditModeProfile: React.FC<ContactType> = (props) => {
-    debugger
-    return (<div>
-        <ProfileRedux onSubmit={props.onSubmit}/>
-    </div>)
-}
+export const Basic = (props:FormDataType) => (
+    <div>
+        <h1>Any place in your app!</h1>
+        <Formik
+            initialValues={{
+                fullName:props.userProfile.fullName,
+                aboutMe: props.userProfile.aboutMe,
+                lookingForAJob:props.userProfile.lookingForAJob,
+                lookingForAJobDescription:props.userProfile.lookingForAJobDescription,
+                contacts:props.userProfile.contacts,
+                userProfile:props.userProfile,
+                onSubmit:props.onSubmit }}
+            onSubmit={props.onSubmit}
+        >
+            {({ isSubmitting }) => (
+                <Form>
+                    <button type='submit' >save</button>
+                    <div>
+                        {createFormikField('fullName', 'Full name', 'input', [], '', 'Full name:')}
+                    </div>
+                    <div>
+                        {createFormikField('aboutMe', 'About me', 'textarea', [], '', 'About me:')}
+                    </div>
+                    <div>
+                        {createFormikField('lookingForAJob', 'Looking for A job','input', [], {type: 'checkbox'}, 'looking for A job:')}
+                    </div>
+                    <div>
+                        {createFormikField('lookingForAJobDescription', 'My skills', 'textarea', [], '', 'My skills:')}
+                    </div>
+                    <div>
+                        <b>Contacts</b>:{Object.keys(props.userProfile).map(key => {
+                            return <div>
+                                <b>{key}:{createFormikField('contacts.' + key, key, 'input', [], [], '')}</b>
+                            </div>
+                        }
+                    )
+                    }
+                    </div>
+                </Form>
+            )}
+        </Formik>
+    </div>
+);
+// const ProfileRedux = reduxForm<FormDataType>({form: 'profile'})(EditProfileModeForm)
+// export const EditModeProfile: React.FC<ContactType> = (props) => {
+//     debugger
+//     return (<div>
+//         <ProfileRedux onSubmit={props.onSubmit}/>
+//     </div>)
+// }

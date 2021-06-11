@@ -1,4 +1,4 @@
-import {Field} from "redux-form";
+import { Field } from "formik";
 import React from "react";
 
 export const updateObjectArray = (items: Array<any>, itemId: number, objPropName: string, newObjProps: {}) => {
@@ -9,9 +9,15 @@ export const updateObjectArray = (items: Array<any>, itemId: number, objPropName
         return i
     })
 }
-export const createField = (name: string, placeholder: string, component: Function, validators: any, props: Object, text: string) => {
+export const createField = (name: string, placeholder: string,  component: Function, validators: any, props: Object, text: string) => {
     return <div>
         {text}
-        <Field name={name} placeholder={placeholder} component={component} validate={validators}{...props}/>
+        <Field name={name} placeholder={placeholder} component={component}  validate={validators}{...props} />
+    </div>
+}
+export const createFormikField = (name: string, placeholder: string,  component: string, validators: any, props: Object, text: string) => {
+    return <div>
+        {text}
+        <Field name={name} placeholder={placeholder} component={component}  validate={validators}{...props} />
     </div>
 }

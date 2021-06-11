@@ -9,6 +9,7 @@ export type InitialStateType = {
     id: number | null;
     email: string | null;
     login: string | null;
+    password:string|null,
     isAuth: boolean
 }
 
@@ -17,6 +18,7 @@ const initialState: InitialStateType = {
     id: null,
     email: null,
     login: null,
+    password:null,
     isAuth: false
 }
 

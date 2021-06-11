@@ -7,13 +7,13 @@ import Settings from "./components/Settings/Settings";
 import {BrowserRouter, HashRouter, Redirect, Route} from "react-router-dom";
 import Friends from "./components/Friends/Friends";
 import HeaderContainer from './components/Header/HeaderContainer';
-import Login from "./Login";
 import {compose} from "redux";
 import {connect, Provider} from "react-redux";
 import store, {RootReduxState} from "./redux/redux-store";
 import {initializeApp} from "./redux/appReducer";
 import Preloader from "./components/preloader/preloader";
 import {lazyComponent} from "./RedirectHOC";
+// import Login from './Login';
 let ProfileContainer = lazy(()=>import('./components/Profile/ProfileContainer'))
 let DialogsContainer = lazy(()=>import('./components/Dialogs/DialogsContainer'))
 let UsersContainer = lazy(()=>import('./components/Users/UsersContainer'))
@@ -64,7 +64,7 @@ class App extends React.Component<AppPropsType> {
                         <Route path='/music' render={() => <Music/>}/>
                         <Route path='/settings' render={() => <Settings/>}/>
                         <Route path='/friends' render={() => <Friends/>}/>
-                        <Route path='/login' render={() => <Login/>}/>
+                     {/*>   <Route path='/login' render={() => <Login key={'asd'}/>}/*/}
 
                     </div>
 

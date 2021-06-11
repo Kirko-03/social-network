@@ -4,7 +4,7 @@ import userPhoto from "../../nophoto.png";
 import {saveProfile, UserProfileType} from '../../redux/profileReducer';
 import Preloader from '../preloader/preloader';
 import {DefaultProfile} from "./DefaultProfileMode";
-import {EditModeProfile, FormDataType} from './ProfileData';
+import {Basic, FormDataType} from './ProfileData';
 
 
 type ProfileType = {
@@ -15,6 +15,7 @@ type ProfileType = {
 }
 const ProfileItem = (props: ProfileType) => {
     let [editMode, setEditMode] = useState(false)
+
     let onPhotoSelected = (e: ChangeEvent<any>) => {
 
         if (e.target.files) {
@@ -71,7 +72,7 @@ const ProfileItem = (props: ProfileType) => {
                 {/*        <div>Looking for A job description:{props.userProfile?.lookingForAJobDescription}</div> : null*/}
                 {/*    }*/}
                 {/*</div>*/}
-                {editMode ? <div><EditModeProfile userProfile={props.userProfile} initialValues={props.userProfile} onSubmit={onSubmit} /></div> :
+                {editMode ? <div><Basic userProfile={props.userProfile} onSubmit={onSubmit}/></div> :
                     <div><DefaultProfile goToEditMode={() => {
                         setEditMode(true)
                     }} isOwner={props.isOwner}   userProfile={props.userProfile}/></div>}
