@@ -4,14 +4,14 @@ import userPhoto from "../../nophoto.png";
 import {saveProfile, UserProfileType} from '../../redux/profileReducer';
 import Preloader from '../preloader/preloader';
 import {DefaultProfile} from "./DefaultProfileMode";
-import {Basic, FormDataType} from './ProfileData';
+import {ProfileRedux, FormDataType} from './ProfileData';
 
 
 type ProfileType = {
     userProfile: UserProfileType | null
     isOwner: boolean
     savePhoto: (file: string) => void
-    saveProfile :(profile:FormDataType)=>void
+    saveProfile :(profile:FormDataType)=>any
 }
 const ProfileItem = (props: ProfileType) => {
     let [editMode, setEditMode] = useState(false)
@@ -23,8 +23,9 @@ const ProfileItem = (props: ProfileType) => {
         }
     }
     const onSubmit = (formData: FormDataType) => {
-        saveProfile(formData)
+        props.saveProfile(formData).then(()=>
         setEditMode(false)
+        )
     }
     if (props.userProfile === null) {
         return <Preloader/>
@@ -72,7 +73,7 @@ const ProfileItem = (props: ProfileType) => {
                 {/*        <div>Looking for A job description:{props.userProfile?.lookingForAJobDescription}</div> : null*/}
                 {/*    }*/}
                 {/*</div>*/}
-                {editMode ? <div><Basic userProfile={props.userProfile} onSubmit={onSubmit}/></div> :
+                {editMode ? <div><ProfileRedux initialValues={props.userProfile} profile={props.userProfile} onSubmit={onSubmit}/></div> :
                     <div><DefaultProfile goToEditMode={() => {
                         setEditMode(true)
                     }} isOwner={props.isOwner}   userProfile={props.userProfile}/></div>}

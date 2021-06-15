@@ -3,6 +3,7 @@ import {profileAPI, usersAPI} from "../api/api";
 import {ThunkAction} from "redux-thunk";
 import {RootReduxState} from "./redux-store";
 import {FormDataType} from "../components/Profile/ProfileData";
+import { stopSubmit } from "redux-form";
 
 type SetUserProfileAC = {
     type: "SET-USER-PROFILE"
@@ -137,19 +138,35 @@ export const updateStatus = (status: string): ThunkAction<Promise<void>, RootRed
             dispatch(setStatus(status))
     }
 export const savePhoto = (file: string): ThunkAction<Promise<void>, RootReduxState, unknown, ActionTypes> =>
-    async (dispatch) => {
+    async (dispatch,getState) => {
+        const userId = getState().auth.id
         let response = await profileAPI.newPhoto(file)
         if (response.data.resultCode === 0)
             dispatch(setPhoto(response.data.data.photos))
+        if (userId)
+            dispatch(getUserProfile(userId))
     }
 export const saveProfile = (profile:FormDataType): ThunkAction<Promise<void>, RootReduxState, unknown, ActionTypes> =>
     async (dispatch,getState) => {
-    const userId = getState().auth.id
+        const userId = getState().auth.id
         let response = await profileAPI.newProfile(profile)
-        if (response.data.resultCode === 0)
-            debugger
-            if(userId)
+        if (response.data.resultCode === 0) {
+            if (userId)
                 dispatch(getUserProfile(userId))
+        }else {
+            let wrongNetwork = response.data.messages[0]
+                .slice(
+                    response.data.messages[0].indexOf(">") + 1,
+                    response.data.messages[0].indexOf(")")
+                )
+                .toLocaleLowerCase();
+            dispatch(
+                stopSubmit("profile", {
+                    contacts: { [wrongNetwork]: response.data.messages[0] }
+                })
+            );
+            return Promise.reject()
+        }
 
-}
+    }
 export default profileReducer

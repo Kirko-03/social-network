@@ -48,9 +48,8 @@ export const profileAPI = {
             }
         })
     },
-    newProfile(profile: FormDataType) {
-
-        return instance.put(`/profile`, profile)
+newProfile(profile: FormDataType) {
+        return instance.put(`/profile`,profile)
     }
 }
 export const authAPI = {
