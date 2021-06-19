@@ -9,7 +9,7 @@ import {
     setUsers,
     unfollow
 } from "./usersReducer";
-import {setAuthUserData} from "./authReducer";
+import {getCaptchaUrlSuccess, setAuthUserData} from "./authReducer";
 import {setInitialSuccess} from "./appReducer";
 
 export type RootStateType = {
@@ -66,7 +66,7 @@ export type ActionTypes = ReturnType<typeof addPostAC> |
     ReturnType<typeof unfollow> |
     ReturnType<typeof setUsers> |
     ReturnType<typeof setCurrentPage> |
-    ReturnType<typeof setTotalItemsCount> |
+    ReturnType<typeof setTotalItemsCount> | ReturnType<typeof getCaptchaUrlSuccess>|
     ReturnType<typeof setLoadItem> | ReturnType<typeof setUserProfile>
     | ReturnType<typeof setAuthUserData> | ReturnType<typeof setToggleFriends> |
     ReturnType<typeof setStatus> | ReturnType<typeof setStatus>|ReturnType<typeof setPhoto>

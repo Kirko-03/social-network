@@ -1,6 +1,6 @@
 import {RootReduxState} from "./redux-store";
 
-export const getUser = (state: RootReduxState) => {
+export let getUser = (state: RootReduxState) => {
     return state.usersPage
 }
 

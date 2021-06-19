@@ -3,8 +3,8 @@ import {NavLink} from "react-router-dom";
 import userPhoto from "../../nophoto.png";
 import {usersAPI} from "../../api/api";
 import React from "react";
-import {UsersFuncType} from "./Users";
 import {InitialStateType} from "../../redux/usersReducer";
+
 type UserPageType = {
     follow: (userId: number) => void
     unfollow: (userId: number) => void
@@ -13,8 +13,8 @@ type UserPageType = {
     setToggleFriends: (loadItem: boolean, userId: number) => void
 }
 
-export const User = (props:UserPageType ) => {
-    return(<div>
+export const User = (props: UserPageType) => {
+    return (<div>
             {
                 props.usersPage.users.map((u) => <div>
 
@@ -57,4 +57,5 @@ export const User = (props:UserPageType ) => {
                     </div>
                 </div>)
             }</div>
-    )}
+    )
+}
