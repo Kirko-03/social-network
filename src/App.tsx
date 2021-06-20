@@ -76,6 +76,7 @@ class App extends React.Component<AppPropsType> {
     }
 }
 
+
 let mapStateToProps = (state: RootReduxState) => {
     return {
         initialized: state.app.initialized

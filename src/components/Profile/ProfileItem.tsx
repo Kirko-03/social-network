@@ -45,34 +45,6 @@ const ProfileItem = (props: ProfileType) => {
                          src={props.userProfile?.photos.large ? props.userProfile?.photos.large : userPhoto}/>
                 }
                 {props.isOwner && <input type={'file'} onChange={onPhotoSelected}/>}
-                {/*<div>*/}
-                {/*    Contacts:*/}
-                {/*    {props.userProfile?.contacts.facebook ?*/}
-                {/*        <div>facebook: {props.userProfile?.contacts.facebook}</div> : null*/}
-                {/*    }*/}
-                {/*    {props.userProfile?.contacts.github ?*/}
-                {/*        <div>github:{props.userProfile?.contacts.github}</div> : null*/}
-                {/*    }*/}
-                {/*    {props.userProfile?.contacts.instagram ?*/}
-                {/*        <div>instagram:{props.userProfile?.contacts.instagram}</div> : null*/}
-                {/*    }*/}
-                {/*    {props.userProfile?.contacts.mainLink ?*/}
-                {/*        <div>mainLink:{props.userProfile?.contacts.mainLink}</div> : null*/}
-                {/*    }*/}
-                {/*    {props.userProfile?.contacts.twitter ?*/}
-                {/*        <div>twitter:{props.userProfile?.contacts.twitter}</div> : null*/}
-                {/*    }*/}
-                {/*    {props.userProfile?.contacts.vk ?*/}
-                {/*        <div>vk:{props.userProfile?.contacts.vk}</div> : null*/}
-                {/*    }*/}
-                {/*    {props.userProfile?.contacts.youtube ?*/}
-                {/*        <div>youtube:{props.userProfile?.contacts.youtube}</div> : null*/}
-                {/*    }*/}
-
-                {/*    {props.userProfile?.lookingForAJobDescription ?*/}
-                {/*        <div>Looking for A job description:{props.userProfile?.lookingForAJobDescription}</div> : null*/}
-                {/*    }*/}
-                {/*</div>*/}
                 {editMode ? <div><ProfileRedux initialValues={props.userProfile} profile={props.userProfile} onSubmit={onSubmit}/></div> :
                     <div><DefaultProfile goToEditMode={() => {
                         setEditMode(true)
