@@ -1,7 +1,8 @@
+import { Input } from '@material-ui/core';
 import React, {ChangeEvent, useState} from 'react';
 
 import userPhoto from "../../nophoto.png";
-import {saveProfile, UserProfileType} from '../../redux/profileReducer';
+import {UserProfileType} from '../../redux/profileReducer';
 import Preloader from '../preloader/preloader';
 import {DefaultProfile} from "./DefaultProfileMode";
 import {ProfileRedux, FormDataType} from './ProfileData';
@@ -34,17 +35,11 @@ const ProfileItem = (props: ProfileType) => {
     return (
         <div>
             <div>
-                <img alt={'img'}
-                    src='https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072823__340.jpg'
-                />
-
-            </div>
-            <div>
                 {
                     <img alt='ava' style={{width: "300px", height: "300px"}}
                          src={props.userProfile?.photos.large ? props.userProfile?.photos.large : userPhoto}/>
                 }
-                {props.isOwner && <input type={'file'} onChange={onPhotoSelected}/>}
+                {props.isOwner && <Input type={'file'} onChange={onPhotoSelected}/>}
                 {editMode ? <div><ProfileRedux initialValues={props.userProfile} profile={props.userProfile} onSubmit={onSubmit}/></div> :
                     <div><DefaultProfile goToEditMode={() => {
                         setEditMode(true)

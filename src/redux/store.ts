@@ -109,33 +109,33 @@ export let store: StoreType = {
     _state: {
         dialogsPage: {
             dialogs: [
-                {name: "Kirik", id: 1},
-                {name: "Dimik", id: 2},
-                {name: "max", id: 3},
-                {name: "dima", id: 4},
-                {name: "sasha", id: 5}
+                {name: "Kirill", id: 1},
+                {name: "Dmitriy", id: 2},
+                {name: "Max", id: 3},
+                {name: "Evgeniy", id: 4},
+                {name: "Alexander", id: 5}
             ],
             messages: [
                 {id: 1, message: "hello"},
-                {id: 2, message: "Как дела придурок?)"},
-                {id: 3, message: "Игноришь?"}
+                {id: 2, message: "Hi)"},
+                {id: 3, message: "boom"}
             ],
             NewTextMessage: "kokpo"
         },
         profilePage: {
             posts: [{message: "Hi", like: 1},
                 {message: "Whats up?", like: 1},
-                {message: "Learn Pituhon(((", like: -13},
-                {message: "LOSEEER", like: 187},
-                {message: "Соси пинчер", like: 100}],
+                {message: "Nice", like: 23},
+                {message: "Excellent", like: 187},
+            ],
             userProfile: null,
             isAuth: false,
             status: ""
 
         },
         friendsPage: {
-            friends: [{friend: "Dimas"},
-                {friend: "Nastyuha"},
+            friends: [{friend: "Dmitriy"},
+                {friend: "Anastasia"},
                 {friend: "Maks"}
             ],
 

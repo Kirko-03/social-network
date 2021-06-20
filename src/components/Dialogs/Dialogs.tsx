@@ -3,6 +3,7 @@ import s from './Dialogs.module.css'
 
 import {dialogsPageType} from "../../redux/store";
 import {Redirect} from "react-router-dom";
+import { Button } from '@material-ui/core';
 
 
 type DialogsPropsType = {
@@ -34,7 +35,7 @@ const Dialogs = (props: DialogsPropsType) => {
             <div className={s.message}>
                 <textarea placeholder={"Введите что-нибудь"} value={NewTextMessage}
                           onChange={newTextChangeHandler}/>
-                <button onClick={addMessage}>new post</button>
+                <Button color={'primary'} style={{background:'white'}} onClick={addMessage}>new post</Button>
                 <div style={{textAlign: "left", listStyle: 'none', fontFamily: 'Helvetica', fontSize: '18px'}}>
                     {
                         dialogPage.messages.map(m => <li>{m.message}</li>)

@@ -1,7 +1,5 @@
 import React from 'react';
 import b from './Profile.module.css';
-
-
 import MyPostContainer from "./MyPosts/MyPostContainer";
 import {UserProfileType} from "../../redux/profileReducer";
 import ProfileItem from './ProfileItem';
@@ -19,7 +17,6 @@ type ProfileType = {
 }
 
 const Profile = (props: ProfileType) => {
-
     return (
         <div className={b.body}>
             <ProfileItem userProfile={props.userProfile} isOwner={props.isOwner} savePhoto={props.savePhoto}

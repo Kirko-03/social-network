@@ -1,39 +1,29 @@
 import React from 'react';
 import c from './Navbar.module.css';
 import {NavLink} from "react-router-dom";
+import { Button } from '@material-ui/core';
 const Navbar = () =>{
     return(
         <nav className={c.nav}>
         <div className={c.item}>
-     <NavLink to="/profile" activeClassName={c.activeLink}>Profile</NavLink>
+            <Button><NavLink to="/profile" activeClassName={c.activeLink}>Profile</NavLink></Button>
         </div>
         <div className={c.item}>
-     <NavLink  to="/dialogs" activeClassName={c.activeLink}>Messages</NavLink>
+            <Button><NavLink  to="/dialogs" activeClassName={c.activeLink}>Messages</NavLink></Button>
         </div>
         <div className={c.item} >
-            <NavLink to="/news" activeClassName={c.activeLink}>News</NavLink>
+            <Button><NavLink to="/news" activeClassName={c.activeLink}>News</NavLink></Button>
         </div>
         <div className={c.item}>
-     <NavLink to="/music" activeClassName={c.activeLink}>Music</NavLink>
+            <Button><NavLink to="/music" activeClassName={c.activeLink}>Music</NavLink></Button>
         </div>
         <div className={c.item}>
-     <NavLink to="/settings" activeClassName={c.activeLink}>Settings</NavLink>
+     <Button><NavLink to="/settings" activeClassName={c.activeLink}>Settings</NavLink></Button>
         </div>
-            <br></br>
-            <br></br>
+          
             <div className={c.item}>
-                <NavLink to="/users?" activeClassName={c.activeLink} className={c.friends}>Users</NavLink>
+                <Button><NavLink to="/users?" activeClassName={c.activeLink} className={c.friends}>Users</NavLink></Button>
             </div>
-
-            <img className={c.image}></img>
-<div>Kirik</div>
-            <img className={c.image}></img>
-            <div>Dimik</div>
-            <img className={c.image}></img>
-            <div>Blachek</div>
-
-
-
         </nav>
     )
 }

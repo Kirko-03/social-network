@@ -1,4 +1,4 @@
-import {UserProfileType} from "../../redux/profileReducer";
+import {ContactsType, UserProfileType} from "../../redux/profileReducer";
 type ContactType = {
     userProfile:UserProfileType
     isOwner:boolean
@@ -18,15 +18,14 @@ return <div><b>{contactTitle}</b>:{contactValue}</div>
     return(
 
         <div>
-            {props.isOwner&&<button onClick={props.goToEditMode}>edit</button>}
+            {props.isOwner&&<button style={{background:'none'}} onClick={props.goToEditMode}>edit</button>}
         <div>Full name:{userProfile.fullName}</div>
     <div>About me:{userProfile.aboutMe}</div>
             <div>Looking for A job:{userProfile.lookingForAJob?'yes':'no'}</div>
             <div>My skills:{userProfile.lookingForAJobDescription}</div>
 
             <div><b>Contacts</b>:{Object.keys(userProfile.contacts).map(key=>{
-                // @ts-ignore
-                return <div style={{paddingLeft:'10px'}}><Contacts  key={key} contactTitle={key} contactValue={userProfile.contacts[key]}  /></div>
+                return <div style={{paddingLeft:'10px'}}><Contacts  key={key} contactTitle={key} contactValue={userProfile.contacts[key as keyof ContactsType]}/></div>
             })}</div>
 
         </div>)

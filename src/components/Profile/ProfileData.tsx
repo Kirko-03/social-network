@@ -17,7 +17,7 @@ export type FormDataType ={
 
 export const EditProfileModeForm:React.FC<InjectedFormProps<UserProfileType,ContactType>&ContactType> =({handleSubmit,profile,error})=>{
     return<form onSubmit={handleSubmit}>
-        <button>save</button>
+        <button style={{background:'none'}}>save</button>
         {error && <div style={{color: 'red', border: '1px red solid', maxWidth: '200px'}}>
             {error}
         </div>}

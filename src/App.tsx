@@ -66,7 +66,6 @@ class App extends React.Component<AppPropsType> {
                         <Route path='/settings' render={() => <Settings/>}/>
                         <Route path='/friends' render={() => <Friends/>}/>
                 <Route path='/login' render={() => <Login />}/>
-
                     </div>
 
 
