@@ -143,7 +143,22 @@ export let store: StoreType = {
 
     },
 }
-
-
 export default store
+
+
+
+
+let obj = [
+    {id: '1', age: 11 },
+    {id: '2', age: 33 },
+    {id: '3', age: 23 },
+]
+let array = obj.map(o=>o,)
+console.log(array)
+
+
+
+
+
+
 

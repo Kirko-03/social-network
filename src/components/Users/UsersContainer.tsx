@@ -66,7 +66,7 @@ export class UsersContainer extends React.Component<UsersPropsType> {
     }
 
     render() {
-        return (<>
+        return (<div>
 
             <Users
                 followingInProgress={this.props.followingInProgress}
@@ -75,7 +75,7 @@ export class UsersContainer extends React.Component<UsersPropsType> {
                 totalItemsCount={this.props.totalItemsCount} currentPage={this.props.currentPage}
                 usersPage={this.props.usersPage} onPageChanged={this.onPageChanged}/>
             {this.props.loadItem ? <Preloader/> : null}
-        </>)
+        </div>)
     }
 }
 

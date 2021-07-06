@@ -10,7 +10,7 @@ type PaginatorType = {
 }
 
 export const Paginator = (props: PaginatorType) => {
-   let portionSize=10
+   let portionSize=20
 
     let pagesCount = Math.ceil(props.totalItemsCount / props.pageSize)
 
