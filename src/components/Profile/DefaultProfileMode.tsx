@@ -22,7 +22,7 @@ return <div><b>{contactTitle}</b>:{contactValue}</div>
         <div>Full name:{userProfile.fullName}</div>
     <div>About me:{userProfile.aboutMe}</div>
             <div>Looking for A job:{userProfile.lookingForAJob?'yes':'no'}</div>
-            <div>My skills:{userProfile.lookingForAJobDescription?Array.from(userProfile.lookingForAJobDescription.split(',').sort((a,b)=>a>b?1:-1)).map(u=><li>{u}</li>):''}</div>
+            <div>My skills:{userProfile.lookingForAJobDescription?Array.from(userProfile.lookingForAJobDescription.replace(/ /,",").split(',').sort((a,b)=>a>b?1:-1)).map(u=><li>{u}</li>):''}</div>
 
             <div><b>Contacts</b>:{Object.keys(userProfile.contacts).map(key=>{
                 return <div style={{paddingLeft:'10px'}}><Contacts  key={key} contactTitle={key} contactValue={userProfile.contacts[key as keyof ContactsType]}/></div>

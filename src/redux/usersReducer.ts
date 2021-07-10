@@ -71,8 +71,9 @@ const usersReducer = (state: InitialStateType = initialState, action: ActionType
             return {
                 ...state,
                 followingInProgress: action.loadItem ?
+                    state.followingInProgress.filter(id => id === action.userId):
                     [...state.followingInProgress, action.userId]
-                    : state.followingInProgress.filter(id => id === action.userId)
+
             }
         default:
             return state

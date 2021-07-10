@@ -58,9 +58,9 @@ export class UsersContainer extends React.Component<UsersPropsType> {
     onPageChanged = (currentPage: number) => {
         this.props.setCurrentPage(currentPage)
         this.props.setLoadItem(true)
-        usersAPI.getUsers(this.props.currentPage).then((data) => {
-            this.props.setLoadItem(false)
+        usersAPI.getUsers(this.props.currentPage).then((data:any) => {
             this.props.setUsers(data.items);
+            this.props.setLoadItem(false)
         })
 
     }
@@ -78,8 +78,6 @@ export class UsersContainer extends React.Component<UsersPropsType> {
         </div>)
     }
 }
-
-debugger
 let mapStateToProps = (state: RootReduxState): MapStateToPropsType => {
     return {
         usersPage: getUser(state),

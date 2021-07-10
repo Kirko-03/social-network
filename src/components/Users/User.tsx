@@ -4,6 +4,7 @@ import userPhoto from "../../nophoto.png";
 import {usersAPI} from "../../api/api";
 import React from "react";
 import {InitialStateType} from "../../redux/usersReducer";
+import {AxiosResponse} from "axios";
 
 type UserPageType = {
     follow: (userId: number) => void
@@ -45,7 +46,8 @@ export const User = (props: UserPageType) => {
                         <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
                             props.setToggleFriends(true, u.id)
                             usersAPI.postUser(u.id).then
-                            ((data: any) => {
+                            ((data:any) => {
+                                debugger
                                 if (data.resultCode === 0 && props.follow)
                                     props.follow(u.id)
                                 props.setToggleFriends(false, u.id)

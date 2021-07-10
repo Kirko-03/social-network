@@ -45,8 +45,6 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType,SecurityType>&Se
 
     </form>)
 }
-debugger
-
 export const LoginRedux = reduxForm<FormDataType,SecurityType>({form: "login"})(LoginForm)
 
 const MapStateToProps = (state: RootReduxState) => ({isAuth: state.auth.isAuth,captchaUrl:state.auth.captcha})

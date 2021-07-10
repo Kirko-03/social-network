@@ -3,6 +3,7 @@ import React, {ChangeEvent, useEffect, useState} from "react";
 type PropsType = {
     status: string
     updateStatus: (newStatus: string) => void
+    isOwner:boolean
 }
 // type StateType = {
 //     editMode: boolean,
@@ -33,8 +34,7 @@ setStatus(e.currentTarget.value)
                        autoFocus/>}
             </span>
             <span>
-
-                {!editMode && <span onClick={activeEditMode}>{status || "-"}</span>}
+                {!editMode && <span onClick={props.isOwner?activeEditMode:deactivateEditMode}>{status || "-"}</span>}
             </span>
         </span>
     }

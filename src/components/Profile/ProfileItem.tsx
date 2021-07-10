@@ -31,7 +31,6 @@ const ProfileItem = (props: ProfileType) => {
     if (props.userProfile === null) {
         return <Preloader/>
     }
-    debugger
     return (
         <div>
             <div>
