@@ -28,13 +28,3 @@ test('after creation <input> should be displayed', () => {
        let input = root.findByType('input')
    }).toThrow()
 })
-test('input should be displayed in editMode instead of span', () => {
-    // @ts-ignore
-    const component = create(<ProfileStatus status='it-kamasutra'/>)
-    const root = component.root
-
-   let span = root.findByType('span')
-    span.props.onClick();
-    let input = root.findByType('input');
-    expect(input.props.value).toBe('it-kamasutra')
-})

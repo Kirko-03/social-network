@@ -15,9 +15,9 @@ export const usersAPI = {
      getUsers(currentPage = 1, pageSize = 5) {
      return  instance.get(`/users?count=${pageSize}&page=${currentPage}`)
         .then(response=>{
-         if (response.data)
+         if (response.data) {
              return response.data
-        })
+         }})
 },
     deleteUser(id: number) {
         return instance.delete(`/follow/${id}`)

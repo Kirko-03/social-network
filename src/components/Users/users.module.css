@@ -15,6 +15,7 @@
 }
 .bold{
     border-radius: 2px;
-    border: black 1px solid;
+    border: black 2px solid;
     font-weight: bold;
+    font-size: 20px;
 }

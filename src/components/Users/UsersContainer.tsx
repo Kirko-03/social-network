@@ -50,17 +50,22 @@ export type UsersPropsType = MapStateToPropsType & MapDispatchToPropsType
 export class UsersContainer extends React.Component<UsersPropsType> {
     componentDidMount() {
         this.props.setLoadItem(true)
-        usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then((data) => {
-            this.props.setTotalItemsCount(data.totalCount)
+        usersAPI.getUsers()
+            .then((data) => {
+
+                this.props.setUsers(data.items)
+                this.props.setLoadItem(false)
+                this.props.setTotalItemsCount(data.totalCount)
         })
     }
 
     onPageChanged = (currentPage: number) => {
         this.props.setCurrentPage(currentPage)
         this.props.setLoadItem(true)
-        usersAPI.getUsers(this.props.currentPage).then((data:any) => {
+        usersAPI.getUsers(this.props.currentPage,this.props.pageSize).then((data) => {
             this.props.setUsers(data.items);
             this.props.setLoadItem(false)
+            this.props.setTotalItemsCount(data.totalCount)
         })
 
     }

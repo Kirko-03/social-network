@@ -10,7 +10,7 @@ type PaginatorType = {
 }
 
 export const Paginator = (props: PaginatorType) => {
-   let portionSize=20
+   let portionSize=10
 
     let pagesCount = Math.ceil(props.totalItemsCount / props.pageSize)
 
@@ -31,7 +31,7 @@ export const Paginator = (props: PaginatorType) => {
         {
 
             pages.filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber).map(p => {
-                return <span className={props.currentPage === p ? us.bold : ""}
+                return <span style={{margin:'2px'}} className={props.currentPage === p ? us.bold : ""}
 
                              onClick={() => props.onPageChanged(p)}>{p}</span>
 
