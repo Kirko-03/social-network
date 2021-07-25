@@ -24,13 +24,13 @@ type MapStateToPropsType = {
     isAuth: boolean
     status: string
     authorizedId: number | null
-    }
+}
 type MapDispatchToPropsType = {
     getUserProfile: (userId: number) => void
     getStatus: (userId: number) => void
-    savePhoto:(file:string)=>void
+    savePhoto: (file: string) => void
     updateStatus: (status: string) => void
-    saveProfile :(profile:FormDataType)=>void
+    saveProfile: (profile: FormDataType) => void
 }
 
 export type ProfilePropsType = MapStateToPropsType & MapDispatchToPropsType
@@ -46,12 +46,11 @@ let mapStateToProps = (state: RootReduxState) => {
 
 
 class ProfileContainer extends React.Component<PropsType> {
-    componentLifeCycle(){
+    componentLifeCycle() {
         let userId = this.props.match.params.userId
         if (!userId) {
             userId = this.props.authorizedId
             if (!userId) {
-
                 this.props.history.push("/login")
             }
         }
@@ -62,15 +61,16 @@ class ProfileContainer extends React.Component<PropsType> {
     componentDidMount() {
         this.componentLifeCycle()
     }
-componentDidUpdate(prevProps: Readonly<PropsType>) {
-        if(this.props.match.params.userId!=prevProps.match.params.userId) {
+
+    componentDidUpdate(prevProps: Readonly<PropsType>) {
+        if (this.props.match.params.userId !== prevProps.match.params.userId) {
             this.componentLifeCycle()
         }
-}
+    }
 
 
     render() {
-         if (!this.props.isAuth) return <Redirect to={'/profile'}/>
+        if (!this.props.isAuth) return <Redirect to={'/profile'}/>
         return <Profile userProfile={this.props.userProfile}
                         isOwner={!this.props.match.params.userId}
                         status={this.props.status}
@@ -86,5 +86,5 @@ componentDidUpdate(prevProps: Readonly<PropsType>) {
 export default compose<React.ComponentType>(withRouter, connect<MapStateToPropsType, MapDispatchToPropsType, {}, RootReduxState>(mapStateToProps, {
     getUserProfile,
     getStatus,
-    updateStatus,savePhoto,saveProfile
+    updateStatus, savePhoto, saveProfile
 }))(ProfileContainer)

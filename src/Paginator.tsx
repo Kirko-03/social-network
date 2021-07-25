@@ -1,5 +1,5 @@
 import us from "./components/Users/users.module.css";
-import React, {useState} from "react";
+import React, { useState} from "react";
 
 
 type PaginatorType = {
@@ -9,11 +9,9 @@ type PaginatorType = {
     onPageChanged: (currentPage: number) => void
 }
 
-export const Paginator = (props: PaginatorType) => {
-   let portionSize=10
-
+export const Paginator = React.memo((props: PaginatorType) => {
+    let portionSize = 10
     let pagesCount = Math.ceil(props.totalItemsCount / props.pageSize)
-
     let pages = [];
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i);
@@ -22,7 +20,6 @@ export const Paginator = (props: PaginatorType) => {
     let [portionNumber, setPortionNumber] = useState(1)
     let leftPortionPageNumber = (portionNumber - 1) * portionSize + 1
     let rightPortionPageNumber = portionNumber * portionSize
-
     return (<div>
         {portionNumber > 1 && <button onClick={() => {
             setPortionNumber(portionNumber - 1)
@@ -30,10 +27,10 @@ export const Paginator = (props: PaginatorType) => {
 
         {
 
-            pages.filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber).map(p => {
-                return <span style={{margin:'2px'}} className={props.currentPage === p ? us.bold : ""}
+            pages.filter(a => a >= leftPortionPageNumber && a <= rightPortionPageNumber).map(p => {
+                return <span style={{margin: '2px'}} className={props.currentPage === p ? us.bold : ""}
 
-                             onClick={() => props.onPageChanged(p)}>{p}</span>
+                           key={p}  onClick={() => props.onPageChanged(p)}>{p}</span>
 
             })
         }
@@ -42,4 +39,4 @@ export const Paginator = (props: PaginatorType) => {
         }}>NEXT</button>}
 
     </div>)
-}
+})

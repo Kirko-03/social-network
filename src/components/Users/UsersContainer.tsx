@@ -4,6 +4,7 @@ import {RootReduxState} from "../../redux/redux-store";
 import Preloader from "../preloader/preloader";
 import {
     follow,
+    getUsers,
     InitialStateType,
     setCurrentPage,
     setLoadItem,
@@ -14,7 +15,6 @@ import {
     UserPageType
 } from "../../redux/usersReducer";
 import React from "react";
-import {usersAPI} from "../../api/api";
 import {compose} from "redux";
 import {
     getCurrentPage,
@@ -38,36 +38,26 @@ type MapStateToPropsType = {
 type MapDispatchToPropsType = {
     follow: (userId: number) => void
     unfollow: (userId: number) => void
-    setCurrentPage: (pageNumber: number) => void
+    setCurrentPage: (currentPage: number) => void
     setUsers: (users: Array<UserPageType>) => void
     setLoadItem: (loadItem: boolean) => void
     setTotalItemsCount: (totalItemsCount: number) => void
     setToggleFriends: (loadItem: boolean, userId: number) => void
+    getUsers: (page: number, pageSize: number) => void
 }
 
 export type UsersPropsType = MapStateToPropsType & MapDispatchToPropsType
 
 export class UsersContainer extends React.Component<UsersPropsType> {
     componentDidMount() {
-        this.props.setLoadItem(true)
-        usersAPI.getUsers()
-            .then((data) => {
-
-                this.props.setUsers(data.items)
-                this.props.setLoadItem(false)
-                this.props.setTotalItemsCount(data.totalCount)
-        })
+        // const {currentPage, pageSize} = this.props
+        // this.props.getUsers(currentPage, pageSize)
+        //вот так круче по феншую что выше
+        this.props.getUsers(this.props.currentPage, this.props.pageSize)
     }
 
-    onPageChanged = (currentPage: number) => {
-        this.props.setCurrentPage(currentPage)
-        this.props.setLoadItem(true)
-        usersAPI.getUsers(this.props.currentPage,this.props.pageSize).then((data) => {
-            this.props.setUsers(data.items);
-            this.props.setLoadItem(false)
-            this.props.setTotalItemsCount(data.totalCount)
-        })
-
+    onPageChanged = (pageNumber: number) => {
+        this.props.getUsers(pageNumber, this.props.pageSize)
     }
 
     render() {
@@ -83,6 +73,7 @@ export class UsersContainer extends React.Component<UsersPropsType> {
         </div>)
     }
 }
+
 let mapStateToProps = (state: RootReduxState): MapStateToPropsType => {
     return {
         usersPage: getUser(state),
@@ -97,6 +88,6 @@ let mapStateToProps = (state: RootReduxState): MapStateToPropsType => {
 
 export default compose(connect<MapStateToPropsType, MapDispatchToPropsType, {}, RootReduxState>(mapStateToProps, {
     follow, unfollow,
-    setUsers, setCurrentPage, setTotalItemsCount, setLoadItem, setToggleFriends
+    setUsers, setCurrentPage, setTotalItemsCount, setLoadItem, setToggleFriends, getUsers
 })(UsersContainer))
 

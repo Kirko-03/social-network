@@ -18,10 +18,12 @@ useEffect(()=>{
 },[props.status])
 
         const activeEditMode=()=> {
+
     setEditMode(true)
     }
         const deactivateEditMode=()=> {
             setEditMode(false)
+            if(props.isOwner) //чтобы не обновлялся статус при нажатии на чужой статус
             props.updateStatus(status)
         }
           const  onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -34,7 +36,7 @@ setStatus(e.currentTarget.value)
                        autoFocus/>}
             </span>
             <span>
-                {!editMode && <span onClick={props.isOwner?activeEditMode:deactivateEditMode}>{status || "-"}</span>}
+                {!editMode && <span onClick={props.isOwner?activeEditMode:deactivateEditMode}>{props.status || "-"}</span>}
             </span>
         </span>
     }

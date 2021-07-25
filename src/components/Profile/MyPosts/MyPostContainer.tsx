@@ -1,5 +1,3 @@
-import React from 'react';
-
 import {addPostAC} from "../../../redux/profileReducer";
 import MyPost from "./MyPost";
 import {connect} from "react-redux";

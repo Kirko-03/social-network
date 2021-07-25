@@ -10,15 +10,15 @@ const instance = axios.create({
     }
 })
 
-
 export const usersAPI = {
-     getUsers(currentPage = 1, pageSize = 5) {
-     return  instance.get(`/users?count=${pageSize}&page=${currentPage}`)
-        .then(response=>{
-         if (response.data) {
-             return response.data
-         }})
-},
+
+
+    getUsers(currentPage = 1, pageSize = 5) {
+        return instance.get(`/users?count=${pageSize}&page=${currentPage}`)
+            .then(response => {
+                return response.data
+            })
+    },
     deleteUser(id: number) {
         return instance.delete(`/follow/${id}`)
     },
@@ -50,19 +50,19 @@ export const profileAPI = {
             }
         })
     },
-newProfile(profile: FormDataType) {
-        return instance.put(`/profile`,profile)
+    newProfile(profile: FormDataType) {
+        return instance.put(`/profile`, profile)
     }
 }
 export const authAPI = {
-    getCaptcha(){
+    getCaptcha() {
         return instance.get(`/security/get-captcha-url`)
     },
     getAuth() {
         return instance.get(`/auth/me`)
     },
-    login(email: string, password: string, rememberMe: boolean,captcha:string) {
-        return instance.post(`/auth/login`, {email, password, rememberMe,captcha})
+    login(email: string, password: string, rememberMe: boolean, captcha: string) {
+        return instance.post(`/auth/login`, {email, password, rememberMe, captcha})
     },
     logout() {
         return instance.delete(`/auth/login`)

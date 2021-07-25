@@ -22,7 +22,7 @@ const MyPostForm: React.FC<InjectedFormProps<FormDataType, {}, string>> = (props
     return (
         <div>
             <div>
-                <a>My post</a>
+                My post
             </div>
             <form onSubmit={props.handleSubmit}>
                 <Field placeholder={"Введите что-нибудь"} name={"NewTextPost"} component={'textarea'}

@@ -1,5 +1,8 @@
 import {ActionTypes} from "./store";
 import {updateObjectArray} from "../Forms/FuncHelper";
+import {ThunkAction} from "redux-thunk";
+import {RootReduxState} from "./redux-store";
+import {usersAPI} from "../api/api";
 
 export type UserPageType = {
     id: number
@@ -31,7 +34,7 @@ const SET_LOAD_ITEM = "SET_LOAD_ITEM"
 const SET_TOGGLE_FRIENDS = "SET_TOGGLE_FRIENDS"
 const initialState: InitialStateType = {
     users: [],
-    pageSize: 4,
+    pageSize: 5,
     totalItemsCount: 0,
     currentPage: 1,
     loadItem: true,
@@ -61,7 +64,7 @@ const usersReducer = (state: InitialStateType = initialState, action: ActionType
             }
         case SET_CURRENT_PAGE:
             return {
-                ...state, currentPage: action.currentPage
+                ...state, currentPage:action.currentPage
             }
         case SET_LOAD_ITEM:
             return {
@@ -71,8 +74,9 @@ const usersReducer = (state: InitialStateType = initialState, action: ActionType
             return {
                 ...state,
                 followingInProgress: action.loadItem ?
-                    state.followingInProgress.filter(id => id === action.userId):
-                    [...state.followingInProgress, action.userId]
+                    [...state.followingInProgress, action.userId]:
+                    state.followingInProgress.filter(id => id !== action.userId)
+
 
             }
         default:
@@ -124,5 +128,20 @@ export const setToggleFriends = (loadItem: boolean, userId: number) => {
         type: SET_TOGGLE_FRIENDS,
         loadItem, userId
     } as const
+}
+
+type ThunkType = ThunkAction<void, RootReduxState, unknown, ActionTypes>
+
+export const getUsers = (page: number, pageSize: number): ThunkType => {
+    return async (dispatch) => {
+        dispatch(setLoadItem(true))
+        dispatch(setCurrentPage(page))
+
+        let response = await usersAPI.getUsers(page, pageSize)
+        dispatch(setLoadItem(false))
+        dispatch(setUsers(response.items))
+        dispatch(setTotalItemsCount(response.totalCount))
+
+    }
 }
 export default usersReducer
