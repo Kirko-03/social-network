@@ -11,8 +11,8 @@ let initialState =  {dialogs: [
 ],
     messages: [
         {id:1,message: "hello"},
-        {id:2,message: "Как дела придурок?)"},
-        {id:3,message: "Игноришь?"}
+        {id:2,message: "Whats up)"},
+        {id:3,message: "Normal?"}
     ],
     NewTextMessage:""}
 

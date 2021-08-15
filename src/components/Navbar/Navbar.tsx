@@ -12,10 +12,10 @@ const Navbar = () =>{
             <Button><NavLink  to="/dialogs" activeClassName={c.activeLink}>Messages</NavLink></Button>
         </div>
         <div className={c.item} >
-            <Button><NavLink to="/news" activeClassName={c.activeLink}>News</NavLink></Button>
+            <Button><a href="https://news.ru/" >News</a></Button>
         </div>
         <div className={c.item}>
-            <Button><NavLink to="/music" activeClassName={c.activeLink}>Music</NavLink></Button>
+            <Button><a href={'https://zaycev.net'}>Music</a></Button>
         </div>
         <div className={c.item}>
      <Button><NavLink to="/settings" activeClassName={c.activeLink}>Settings</NavLink></Button>
