@@ -1,9 +1,8 @@
 .nav{
-
     text-align: center;
     grid-area:n;
-    background: rgb(251,223,63);
-    background: radial-gradient(circle, rgba(251,223,63,1) 0%, rgba(70,252,72,1) 100%);
+    background:white
+    /* background: radial-gradient(circle, rgba(251,223,63,1) 0%, rgba(70,252,72,1) 100%); */
   }
 .item a{
     color: black;
@@ -13,7 +12,7 @@ text-decoration: none;
 color:rgb(26, 16, 173);
   }
   .item a.activeLink, .item a.activeLink:hover{
-      color:white;
+      border-bottom: 1px black solid;
   }
   .friends{
       font-size: 30px;

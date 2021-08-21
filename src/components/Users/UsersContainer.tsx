@@ -50,26 +50,22 @@ export type UsersPropsType = MapStateToPropsType & MapDispatchToPropsType
 
 export class UsersContainer extends React.Component<UsersPropsType> {
     componentDidMount() {
-        // const {currentPage, pageSize} = this.props
-        // this.props.getUsers(currentPage, pageSize)
-        //вот так круче по феншую что выше
         this.props.getUsers(this.props.currentPage, this.props.pageSize)
     }
 
     onPageChanged = (pageNumber: number) => {
         this.props.getUsers(pageNumber, this.props.pageSize)
-    }
-
+    }    
     render() {
         return (<div>
-{this.props.loadItem ? <Preloader/> :
+{this.props.loadItem ? 
+    <Preloader/>:''}
             <Users
                 followingInProgress={this.props.followingInProgress}
                 setToggleFriends={this.props.setToggleFriends} follow={this.props.follow} unfollow={this.props.unfollow}
                 pageSize={this.props.pageSize}
                 totalItemsCount={this.props.totalItemsCount} currentPage={this.props.currentPage}
-                usersPage={this.props.usersPage} onPageChanged={this.onPageChanged}/>}
-            
+                usersPage={this.props.usersPage} onPageChanged={this.onPageChanged}/>
         </div>)
     }
 }

@@ -1,16 +1,12 @@
-.body img{
-    width: 850px;
-    height: 300px;
+.body img {
+  width: 850px;
+  height: 300px;
+}
+.body {
+  grid-area: b;
+  background-color: rgba(0, 0, 255, 0.178);
+}
 
-  }
-  .body{
-    grid-area:b;
-
-      background: rgb(211,127,0);
-      background: linear-gradient(270deg, rgba(211,127,0,1) 10%, rgba(255,217,0,1) 100%);
-
-  }
-
-  .item{
-    color:red;
-  }
+.item {
+  color: red;
+}

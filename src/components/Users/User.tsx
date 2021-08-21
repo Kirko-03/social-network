@@ -20,7 +20,7 @@ export const User = (props: UserPageType) => {
 
                     <div className={us.page}>
 <span>
-    <NavLink to={`/profile/` + u.id}>
+    <NavLink to={`/profile/${u.id}`}>
                     <img alt={'avatar'} src={u.photos.small != null ? u.photos.small : userPhoto}/>
              </NavLink>
                     <div className={us.inform}>

@@ -1,7 +1,7 @@
 .app-writer {
     margin: 0 auto;
     display: grid;
-
+background-color: white;
     grid-template-areas:
   "h h"
   "n c";

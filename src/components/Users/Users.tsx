@@ -15,7 +15,7 @@ export type UsersFuncType = {
     setToggleFriends: (loadItem: boolean, userId: number) => void
 }
 
-export let Users = (props: UsersFuncType) => {
+export let Users = React.memo((props: UsersFuncType) => {
     return( <>
             <Paginator totalItemsCount={props.totalItemsCount}
                        onPageChanged={props.onPageChanged}
@@ -25,4 +25,4 @@ export let Users = (props: UsersFuncType) => {
                   unfollow={props.unfollow} follow={props.follow} usersPage={props.usersPage} />
     </>
     )
-}
+})
