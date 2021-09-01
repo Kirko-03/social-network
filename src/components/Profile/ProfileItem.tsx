@@ -31,6 +31,7 @@ const ProfileItem = (props: ProfileType) => {
     if (props.userProfile === null) {
         return <Preloader/>
     }
+    
     return (
         <div>
             <div>
@@ -39,8 +40,8 @@ const ProfileItem = (props: ProfileType) => {
                          src={props.userProfile?.photos.large ? props.userProfile?.photos.large : userPhoto}/>
                 }
                 {props.isOwner && <Input type={'file'} onChange={onPhotoSelected}/>}
-                {editMode ? <div><ProfileRedux initialValues={props.userProfile} profile={props.userProfile} onSubmit={onSubmit}/></div> :
-                    <div><DefaultProfile goToEditMode={() => {
+                {editMode ? <div><ProfileRedux  initialValues={props.userProfile} profile={props.userProfile} onSubmit={onSubmit}/></div> :
+                    <div><DefaultProfile  goToEditMode={() => {
                         setEditMode(true)
                     }} isOwner={props.isOwner}   userProfile={props.userProfile}/></div>}
 

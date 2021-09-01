@@ -1,5 +1,6 @@
 import us from "./components/Users/users.module.css";
 import React, { useState} from "react";
+import { Button } from "@material-ui/core";
 
 
 type PaginatorType = {
@@ -21,9 +22,9 @@ export const Paginator = React.memo((props: PaginatorType) => {
     let leftPortionPageNumber = (portionNumber - 1) * portionSize + 1
     let rightPortionPageNumber = portionNumber * portionSize
     return (<div style={{padding:'5px'}}>
-        {portionNumber > 1 && <button onClick={() => {
+        {portionNumber > 1 && <Button onClick={() => {
             setPortionNumber(portionNumber - 1)
-        }}>PREVIOUS</button>}
+        }}><h2>🠔</h2></Button>}
 
         {
 
@@ -34,9 +35,9 @@ export const Paginator = React.memo((props: PaginatorType) => {
 
             })
         }
-        {portionCount > portionNumber && <button onClick={() => {
+        {portionCount > portionNumber && <Button  onClick={() => {
             setPortionNumber(portionNumber + 1)
-        }}>NEXT</button>}
+        }}><h2>🠖</h2></Button>}
 
     </div>)
 })

@@ -4,6 +4,7 @@ import userPhoto from "../../nophoto.png";
 import {usersAPI} from "../../api/api";
 import React from "react";
 import {InitialStateType} from "../../redux/usersReducer";
+import { Button } from "@material-ui/core";
 
 type UserPageType = {
     follow: (userId: number) => void
@@ -29,7 +30,7 @@ export const User = (props: UserPageType) => {
                     </div>
                     <br/>
                     <div className={us.button}>
-                    {u.followed ? <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
+                    {u.followed ? <Button style={{background:'blueviolet'}} disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
                             props.setToggleFriends(true, u.id)
                             usersAPI.deleteUser(u.id).then
                             ((response: any) => {
@@ -39,8 +40,8 @@ export const User = (props: UserPageType) => {
 
                                 }
                             )
-                        }}>Удалить из друзей</button> :
-                        <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
+                        }}>Удалить из друзей</Button> :
+                        <Button style={{background:'greenyellow'}} disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
                             props.setToggleFriends(true, u.id)
                             usersAPI.postUser(u.id).then
                             ((response: any) => {
@@ -49,7 +50,7 @@ export const User = (props: UserPageType) => {
                                 props.follow(u.id)
                             })
 
-                        }}>Добавить в друзья</button>}
+                        }}>Добавить в друзья</Button>}
                     </div>
                     </span>
                     </div>

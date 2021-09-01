@@ -4,10 +4,12 @@ import {ContactsType, UserProfileType} from "../../redux/profileReducer";
 import {createField} from "../../Forms/FuncHelper";
 import {Input, Textarea} from '../../Forms/FormComponents';
 import {InjectedFormProps, reduxForm } from 'redux-form';
+import { ButtonStyle } from '../../Forms/Button';
 type ContactType={
     profile:UserProfileType
 }
 export type FormDataType ={
+   
     fullName:string
     aboutMe:string
     lookingForAJob:boolean
@@ -16,8 +18,8 @@ export type FormDataType ={
 }
 
 export const EditProfileModeForm:React.FC<InjectedFormProps<UserProfileType,ContactType>&ContactType> =({handleSubmit,profile,error})=>{
-    return<form onSubmit={handleSubmit}>
-        <button style={{background:'none'}}>save</button>
+   return<form onSubmit={handleSubmit}>
+        <button style={ButtonStyle}>SAVE</button>
         {error && <div style={{color: 'red', border: '1px red solid', maxWidth: '200px'}}>
             {error}
         </div>}

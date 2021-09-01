@@ -1,9 +1,11 @@
+import { Button } from "@material-ui/core";
+import React from "react";
+import { ButtonStyle } from "../../Forms/Button";
 import {ContactsType, UserProfileType} from "../../redux/profileReducer";
 type ContactType = {
     userProfile:UserProfileType
     isOwner:boolean
     goToEditMode:()=>void
-
 }
 type InfoType={
     contactTitle:string
@@ -18,7 +20,7 @@ return <div><b>{contactTitle}</b>:{contactValue}</div>
     return(
 
         <div>
-            {props.isOwner&&<button style={{background:'none'}} onClick={props.goToEditMode}>edit</button>}
+            {props.isOwner&&<button style={ButtonStyle} onClick={props.goToEditMode}>EDIT</button>}
         <div>Full name:{userProfile.fullName}</div>
     <div>About me:{userProfile.aboutMe}</div>
             <div>Looking for A job:{userProfile.lookingForAJob?'yes':'no'}</div>

@@ -1,0 +1,1 @@
+export const ButtonStyle={background:'white',width:'70px',height:'40px',borderRadius:'5px'}
