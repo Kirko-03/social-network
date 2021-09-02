@@ -22,7 +22,7 @@ const Profile = (props: ProfileType) => {
             <ProfileItem userProfile={props.userProfile} isOwner={props.isOwner} savePhoto={props.savePhoto}
                          saveProfile={props.saveProfile}/>
             <ProfileStatus  isOwner={props.isOwner} status={props.status} updateStatus={props.updateStatus}/>
-                        <MyPostContainer userProfile={props.userProfile}/>
+                        <MyPostContainer/>
         </div>
     )
 }

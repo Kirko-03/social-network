@@ -5,8 +5,7 @@ const Settings = () =>{
     return(
         <div  >
             Settings
-            <Preloader/>
-        </div>
+                </div>
     )
 }
 
