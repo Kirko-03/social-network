@@ -15,6 +15,18 @@ type UserPageType = {
 }
 
 export const User = (props: UserPageType) => {
+    let unFollowBack='';
+    let followBack='';
+    function followedFunc(){
+// if(props.defaultBack){
+//     unFollowBack='blueviolet';
+//     followBack='greenyellow';
+// }
+// else{
+//     unFollowBack='orange';
+//     followBack='blue';
+// }
+    }
     return (<div>
             {
                 props.usersPage.users.map((u) => <div>
@@ -30,7 +42,7 @@ export const User = (props: UserPageType) => {
                     </div>
                     <br/>
                     <div className={us.button}>
-                    {u.followed ? <Button style={{background:'blueviolet'}} disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
+                    {u.followed ? <Button style={{background:followBack}} className={us.darkFollowButton}  disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
                             props.setToggleFriends(true, u.id)
                             usersAPI.deleteUser(u.id).then
                             ((response: any) => {
@@ -41,7 +53,7 @@ export const User = (props: UserPageType) => {
                                 }
                             )
                         }}>Удалить из друзей</Button> :
-                        <Button style={{background:'greenyellow'}} disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
+                        <Button style={{background:unFollowBack}} className={us.darkUnfollowButton}  disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
                             props.setToggleFriends(true, u.id)
                             usersAPI.postUser(u.id).then
                             ((response: any) => {

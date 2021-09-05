@@ -22,7 +22,7 @@ export const Paginator = React.memo((props: PaginatorType) => {
     let leftPortionPageNumber = (portionNumber - 1) * portionSize + 1
     let rightPortionPageNumber = portionNumber * portionSize
     return (<div style={{padding:'5px'}}>
-        {portionNumber > 1 && <Button onClick={() => {
+        {portionNumber > 1 && <Button style={{height:'30px'}} onClick={() => {
             setPortionNumber(portionNumber - 1)
         }}><h2>🠔</h2></Button>}
 
@@ -35,7 +35,7 @@ export const Paginator = React.memo((props: PaginatorType) => {
 
             })
         }
-        {portionCount > portionNumber && <Button  onClick={() => {
+        {portionCount > portionNumber && <Button style={{height:'30px'}} onClick={() => {
             setPortionNumber(portionNumber + 1)
         }}><h2>🠖</h2></Button>}
 

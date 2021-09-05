@@ -4,12 +4,15 @@ import {RootReduxState} from "./redux-store";
 import {getAuthUserData} from "./authReducer";
 
 export type InitialStateType = {
-    initialized: boolean
+    initialized: boolean,
+    darkBack:boolean
 }
 
 const INITIALIZED_SUCCESS = "INITIALIZED_SUCCESS"
+const UPDATETHEME="UPDATE-THEME"
 const initialState: InitialStateType = {
-    initialized: false
+    initialized: false,
+    darkBack:false
 }
 
 const appReducer = (state: InitialStateType = initialState, action: ActionTypes): InitialStateType => {
@@ -19,6 +22,12 @@ const appReducer = (state: InitialStateType = initialState, action: ActionTypes)
             return {
                 ...state,
                 initialized: true
+            }
+            case UPDATETHEME:{
+                return{
+                    ...state,
+                    darkBack:action.darkBack
+                }
             }
         default:
             return state
@@ -31,6 +40,9 @@ export const setInitialSuccess = () => {
     return {
         type: INITIALIZED_SUCCESS,
     } as const
+}
+export const updateThemeAC=(darkBack:boolean)=>{
+    return {type:UPDATETHEME,darkBack} as const
 }
 
 export const initializeApp = (): ThunkAction<Promise<void>, RootReduxState, unknown, ActionTypes> => {

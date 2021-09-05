@@ -1,10 +1,12 @@
-import React from 'react'
-import Preloader from '../preloader/preloader'
-
-const Settings = () =>{
+import { updateThemeAC } from '../../redux/appReducer'
+type SettingsType={
+    updateThemeAC:(darkBack:boolean)=>void
+}
+const Settings:React.FC<SettingsType> = ({updateThemeAC}) =>{ 
     return(
-        <div  >
-            Settings
+        <div>
+            <button onClick={()=>{updateThemeAC(true)}} style={{background:'black',color:'white'}}>Dark theme</button>    
+            <button onClick={()=>{updateThemeAC(false)}} style={{background:'white',color:'black'}}>Light theme</button>
                 </div>
     )
 }

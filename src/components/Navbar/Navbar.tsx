@@ -2,9 +2,12 @@ import React from 'react';
 import c from './Navbar.module.css';
 import {NavLink} from "react-router-dom";
 import { Button } from '@material-ui/core';
+import { useSelector } from 'react-redux';
+import { RootReduxState } from '../../redux/redux-store';
 const Navbar = () =>{
+    let darkBack = useSelector<RootReduxState>(state=>state.app.darkBack)
     return(
-        <nav className={c.nav}>
+        <nav className={darkBack?c.darkNav:c.defaultNav}>
         <div className={c.item}>
             <Button><NavLink to="/profile" activeClassName={c.activeLink}>Profile</NavLink></Button>
         </div>

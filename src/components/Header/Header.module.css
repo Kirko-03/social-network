@@ -1,9 +1,12 @@
-.header{
+.defaultHeader{
     grid-area:h;
     background: linear-gradient(105deg,rgba(54,153,269,31)  70%,rgba(54,153,269,31)  50%, rgba(240,238,242,1) 120%);
-
 }
-  .header img{
+.darkHeader{
+    grid-area:h;
+    background:rgb(1 1 1);
+}
+  .darkHeader img,.defaultHeader img{
 
       width: 200px;
       height: 100px;

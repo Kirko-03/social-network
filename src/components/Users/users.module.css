@@ -1,5 +1,4 @@
 .page{
-    color: black;
     padding:10px;
 }
 
@@ -19,4 +18,10 @@
     border-bottom: black 2px solid;
     font-weight: bold;
     font-size: 20px;
+}
+.darkFollowButton{
+background-color:blue ;
+}
+.darkUnFollowButton{
+    background-color:orange ;
 }

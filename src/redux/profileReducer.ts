@@ -21,7 +21,7 @@ export type UserProfileType = {
         small: string,
         large: string
     }
-}
+ }
 export type ContactsType = {
     facebook: string,
     website: string,
@@ -42,8 +42,8 @@ let initialState = {
     // NewTextPost: "it-camasutra",
     userProfile: null,
     isAuth: false,
-    status: ""
-
+    status: "",
+    
 }
 
 const ADDPOST = "ADD-POST";
@@ -51,6 +51,7 @@ const ADDPOST = "ADD-POST";
 const SETUSERPROFILE = "SET-USER-PROFILE"
 const SETSTATUS = "SET-STATUS"
 const SETPHOTO = "SET-PHOTO"
+
 const profileReducer = (state: profilePageType = initialState, action: ActionTypes) => {
 
     switch (action.type) {
@@ -109,6 +110,7 @@ export const addPostAC = (NewTextPost: string) => {
         NewTextPost
     } as const
 }
+
 /*export const updateAddPostAC = (body: string) => {
     return {
         type: UPDATEADDPOST,

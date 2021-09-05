@@ -7,15 +7,16 @@ type PostPropsType = {
 }
 const Post = (props:PostPropsType) => {
     const [like,setLike] = useState(props.like)
+    function funcLike(like:number,color:string){
+        return <span onClick={()=>setLike(props.like+like)} style={{ margin:'5px',color:color}}>♥</span>
+    }
     return (
         <div className={s.item}>
             <img src={userPhoto}></img>
             {props.message}
-
             <div>
-                <span >like {like}</span>
-                
-                {props.like===like ? <span onClick={()=>setLike(props.like+1)} style={{ margin:'5px'}}>♥</span>:<span onClick={()=>setLike(props.like)} style={{ margin:'5px',color:'red'}}>♥</span>}
+                <span>like{like}</span>
+                {props.like===like ? funcLike(1,'gray'):funcLike(0,'red')}
             </div>
         </div>
     )

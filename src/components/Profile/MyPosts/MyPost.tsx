@@ -3,6 +3,7 @@ import Post from './Post/Post'
 import {PostType} from '../../../redux/store';
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {maxLengthCreator, required} from "../../../validators/validators";
+import { ButtonStyle } from '../../../Forms/Button';
 
 type MyPostProps = {
     posts: Array<PostType>
@@ -27,7 +28,7 @@ const MyPostForm: React.FC<InjectedFormProps<FormDataType, {}, string>> = (props
             <form onSubmit={props.handleSubmit}>
                 <Field placeholder={"Введите что-нибудь"} name={"NewTextPost"} component={'textarea'}
                        validate={[required, length]}/>
-                <button>Оставить пост</button>
+                <button style={ButtonStyle}>Оставить пост</button>
 
             </form>
         </div>

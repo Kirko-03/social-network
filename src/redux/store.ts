@@ -10,7 +10,7 @@ import {
     unfollow
 } from "./usersReducer";
 import {getCaptchaUrlSuccess, setAuthUserData} from "./authReducer";
-import {setInitialSuccess} from "./appReducer";
+import {setInitialSuccess, updateThemeAC} from "./appReducer";
 
 export type RootStateType = {
     profilePage: profilePageType
@@ -69,7 +69,7 @@ export type ActionTypes = ReturnType<typeof addPostAC> |
     ReturnType<typeof setTotalItemsCount> | ReturnType<typeof getCaptchaUrlSuccess>|
     ReturnType<typeof setLoadItem> | ReturnType<typeof setUserProfile>
     | ReturnType<typeof setAuthUserData> | ReturnType<typeof setToggleFriends> |
-    ReturnType<typeof setStatus> | ReturnType<typeof setStatus>|ReturnType<typeof setPhoto>
+    ReturnType<typeof setStatus> | ReturnType<typeof setStatus>|ReturnType<typeof setPhoto>|ReturnType<typeof updateThemeAC>
 
 
 export type friendsType = {
@@ -144,17 +144,6 @@ export let store: StoreType = {
     },
 }
 export default store
-
-
-
-
-let obj = [
-    {id: '1', age: 11 },
-    {id: '2', age: 33 },
-    {id: '3', age: 23 },
-]
-let array = obj.map(o=>o,)
-console.log(array)
 
 
 

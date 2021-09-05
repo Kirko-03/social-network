@@ -18,9 +18,10 @@ type ProfileType = {
 const Profile = (props: ProfileType) => {
 
     return (
-        <div className={b.body} style={props.isOwner?{background:''}:{background:' linear-gradient(270deg, rgba(0, 97, 211, 1) 10%, rgba(0, 255, 239, 1) 100%)'}}>
+        <div className={b.darkBody}>
             <ProfileItem userProfile={props.userProfile} isOwner={props.isOwner} savePhoto={props.savePhoto}
                          saveProfile={props.saveProfile}/>
+                         <hr/>
             <ProfileStatus  isOwner={props.isOwner} status={props.status} updateStatus={props.updateStatus}/>
                         <MyPostContainer/>
         </div>
