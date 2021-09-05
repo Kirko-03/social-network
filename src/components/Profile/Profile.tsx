@@ -21,8 +21,8 @@ const Profile = (props: ProfileType) => {
         <div className={b.darkBody}>
             <ProfileItem userProfile={props.userProfile} isOwner={props.isOwner} savePhoto={props.savePhoto}
                          saveProfile={props.saveProfile}/>
-                         <hr/>
             <ProfileStatus  isOwner={props.isOwner} status={props.status} updateStatus={props.updateStatus}/>
+            <hr/>
                         <MyPostContainer/>
         </div>
     )
