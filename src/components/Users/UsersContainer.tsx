@@ -4,6 +4,7 @@ import {RootReduxState} from "../../redux/redux-store";
 import Preloader from "../preloader/preloader";
 import {
     follow,
+    friendsTab,
     getUsers,
     InitialStateType,
     setCurrentPage,
@@ -28,6 +29,7 @@ import {Users} from "./Users";
 
 
 type MapStateToPropsType = {
+    friends:boolean
     usersPage: InitialStateType
     pageSize: number
     totalItemsCount: number
@@ -36,6 +38,7 @@ type MapStateToPropsType = {
     followingInProgress: any[]
 }
 type MapDispatchToPropsType = {
+    friendsTab:(friends:boolean)=>void
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     setCurrentPage: (currentPage: number) => void
@@ -61,9 +64,11 @@ export class UsersContainer extends React.Component<UsersPropsType> {
 {this.props.loadItem ? 
     <Preloader/>:''}
             <Users
+            friends={this.props.friends}
+            friendsTab={this.props.friendsTab}
                 followingInProgress={this.props.followingInProgress}
                 setToggleFriends={this.props.setToggleFriends} follow={this.props.follow} unfollow={this.props.unfollow}
-                pageSize={this.props.pageSize}
+                pageSize={this.props.pageSize} setTotalItemsCount={this.props.setTotalItemsCount}
                 totalItemsCount={this.props.totalItemsCount} currentPage={this.props.currentPage}
                 usersPage={this.props.usersPage} onPageChanged={this.onPageChanged}/>
         </div>)
@@ -72,6 +77,7 @@ export class UsersContainer extends React.Component<UsersPropsType> {
 
 let mapStateToProps = (state: RootReduxState): MapStateToPropsType => {
     return {
+        friends:state.usersPage.friends,
         usersPage: getUser(state),
         pageSize: getPageSize(state),
         totalItemsCount: getTotalItemsCount(state),
@@ -84,6 +90,6 @@ let mapStateToProps = (state: RootReduxState): MapStateToPropsType => {
 
 export default compose(connect<MapStateToPropsType, MapDispatchToPropsType, {}, RootReduxState>(mapStateToProps, {
     follow, unfollow,
-    setUsers, setCurrentPage, setTotalItemsCount, setLoadItem, setToggleFriends, getUsers
+    setUsers, setCurrentPage, setTotalItemsCount, setLoadItem, setToggleFriends, getUsers,friendsTab
 })(UsersContainer))
 

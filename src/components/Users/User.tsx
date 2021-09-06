@@ -12,24 +12,20 @@ type UserPageType = {
     usersPage: InitialStateType
     followingInProgress: any[]
     setToggleFriends: (loadItem: boolean, userId: number) => void
+    friends:boolean
 }
 
 export const User = (props: UserPageType) => {
-    let unFollowBack='';
-    let followBack='';
-    function followedFunc(){
-// if(props.defaultBack){
-//     unFollowBack='blueviolet';
-//     followBack='greenyellow';
-// }
-// else{
-//     unFollowBack='orange';
-//     followBack='blue';
-// }
+    let users = ()=>{
+        if(props.friends)
+     return props.usersPage.users.filter(u=>u.followed===true)
+     else{
+         return props.usersPage.users
+     }
     }
     return (<div>
             {
-                props.usersPage.users.map((u) => <div>
+                users()?.map((u) => <div>
 
                     <div className={us.page}>
 <span>
@@ -42,7 +38,7 @@ export const User = (props: UserPageType) => {
                     </div>
                     <br/>
                     <div className={us.button}>
-                    {u.followed ? <Button style={{background:followBack}} className={us.darkFollowButton}  disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
+                    {u.followed ? <Button  className={us.darkFollowButton}  disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
                             props.setToggleFriends(true, u.id)
                             usersAPI.deleteUser(u.id).then
                             ((response: any) => {
@@ -53,7 +49,7 @@ export const User = (props: UserPageType) => {
                                 }
                             )
                         }}>Удалить из друзей</Button> :
-                        <Button style={{background:unFollowBack}} className={us.darkUnfollowButton}  disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
+                        <Button  className={us.darkUnfollowButton}  disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
                             props.setToggleFriends(true, u.id)
                             usersAPI.postUser(u.id).then
                             ((response: any) => {

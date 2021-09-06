@@ -1,7 +1,6 @@
 .page{
     padding:10px;
 }
-
 .city{
     text-align: right;
 }
@@ -18,10 +17,4 @@
     border-bottom: black 2px solid;
     font-weight: bold;
     font-size: 20px;
-}
-.darkFollowButton{
-background-color:blue ;
-}
-.darkUnFollowButton{
-    background-color:orange ;
 }

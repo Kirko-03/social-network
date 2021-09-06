@@ -1,1 +1,1 @@
-export const ButtonStyle={width:'75px',height:'36px',borderRadius:'5px'}
+export const ButtonStyle={height:'36px',borderRadius:'5px'}
