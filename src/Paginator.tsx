@@ -1,14 +1,13 @@
 import us from "./components/Users/users.module.css";
 import React, { useState } from "react";
 import { Button } from "@material-ui/core";
-import { getUsers } from "./redux/usersReducer";
 
 type PaginatorType = {
   totalItemsCount: number;
   pageSize: number;
   currentPage: number;
   onPageChanged: (currentPage: number) => void;
-  friends: boolean;
+  
 };
 
 export const Paginator = React.memo((props: PaginatorType) => {

@@ -5,6 +5,8 @@ import {usersAPI} from "../../api/api";
 import React from "react";
 import {InitialStateType} from "../../redux/usersReducer";
 import { Button } from "@material-ui/core";
+import { useSelector } from "react-redux";
+import { RootReduxState } from "../../redux/redux-store";
 
 type UserPageType = {
     follow: (userId: number) => void
@@ -16,6 +18,7 @@ type UserPageType = {
 }
 
 export const User = (props: UserPageType) => {
+    let isAuth=useSelector<RootReduxState>(state=>state.auth.isAuth)
     let users = ()=>{
         if(props.friends)
      return props.usersPage.users.filter(u=>u.followed===true)
@@ -37,7 +40,7 @@ export const User = (props: UserPageType) => {
                         <div>Id:{u.id}</div>
                     </div>
                     <br/>
-                    <div className={us.button}>
+                    {isAuth?<div className={us.button}>
                     {u.followed ? <Button  className={us.darkFollowButton}  disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
                             props.setToggleFriends(true, u.id)
                             usersAPI.deleteUser(u.id).then
@@ -59,7 +62,7 @@ export const User = (props: UserPageType) => {
                             })
 
                         }}>Добавить в друзья</Button>}
-                    </div>
+                    </div>:''}
                     </span>
                     </div>
                 </div>)

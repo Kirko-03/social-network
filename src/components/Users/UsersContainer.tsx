@@ -26,6 +26,7 @@ import {
     getUser
 } from "../../redux/usersSelector";
 import {Users} from "./Users";
+import { RouteComponentProps } from "react-router-dom";
 
 
 type MapStateToPropsType = {
@@ -49,7 +50,7 @@ type MapDispatchToPropsType = {
     getUsers: (page: number, pageSize: number) => void
 }
 
-export type UsersPropsType = MapStateToPropsType & MapDispatchToPropsType
+export type UsersPropsType = MapStateToPropsType & MapDispatchToPropsType&RouteComponentProps
 
 export class UsersContainer extends React.Component<UsersPropsType> {
     componentDidMount() {

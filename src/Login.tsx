@@ -1,6 +1,6 @@
 import React from "react";
 import {InjectedFormProps, reduxForm} from 'redux-form'
-import {getCaptchaUrl, login} from "./redux/authReducer";
+import {login} from "./redux/authReducer";
 import {Input} from "./Forms/FormComponents";
 import {maxLengthCreator, minPasswordCreator, required} from "./validators/validators";
 import {connect} from "react-redux";
@@ -16,7 +16,7 @@ export type FormDataType = {
 type SecurityType = {
     captchaUrl: string|null
 }
-type MapStateToProps = {
+type MapStateToPropsType = {
     captchaUrl: string|null
     isAuth: boolean
 
@@ -36,7 +36,7 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType,SecurityType>&Se
             {error}
         </div>}
         {createField("rememberMe", "RememberMe", Input, [], {type: "checkbox"}, 'Remember login')}
-        {captchaUrl && <img src={captchaUrl}/>}
+        {captchaUrl && <img src={captchaUrl} alt='captcha'/>}
 
         {captchaUrl && createField("captcha", "captchaUrl", Input, [required], [], '')}
         <div>
@@ -48,7 +48,7 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType,SecurityType>&Se
 export const LoginRedux = reduxForm<FormDataType,SecurityType>({form: "login"})(LoginForm)
 
 const MapStateToProps = (state: RootReduxState) => ({isAuth: state.auth.isAuth,captchaUrl:state.auth.captcha})
- const Login: React.FC<MapStateToProps & MapDispatchToProps> = (props) => {
+ const Login: React.FC<MapStateToPropsType & MapDispatchToProps> = (props) => {
     if (props.isAuth===true) return <Redirect to={'/profile'}/>
     const onSubmit = (formData: FormDataType) => {
         props.login(formData.email, formData.password, formData.rememberMe,formData.captcha)
