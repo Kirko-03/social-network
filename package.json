@@ -2,7 +2,7 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://gentle-fortress-53655.herokuapp.com/",
+  "homepage": "https://kirko-03.github.io/social-network/",
   "dependencies": {
     "@material-ui/core": "^4.11.4",
     "@testing-library/jest-dom": "^5.11.4",
@@ -21,7 +21,7 @@
     "axios": "^0.21.1",
     "classnames": "^2.3.1",
     "formik": "^2.2.9",
-    "gh-pages": "^3.2.0",
+    "gh-pages": "^3.2.3",
     "i": "^0.3.6",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
