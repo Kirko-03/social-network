@@ -1,43 +1,55 @@
 .app-writer {
-    margin: 0 auto;
-    display: grid;
-background-color: white;
+  margin: 0 auto;
+  display: grid;
+  background-color: white;
+  grid-template-areas:
+    "h h"
+    "n c";
+  grid-template-rows: 1fr 15fr;
+  grid-template-columns: 2fr 10fr;
+  grid-gap: 5px;
+  @media (max-width: 750px) {
     grid-template-areas:
-  "h h"
-  "n c";
-    grid-template-rows: 100px 1fr;
-    grid-template-columns: 2fr 10fr;
-    grid-gap: 5px;
+      "n n"
+      "c c"
+      "h h";
+    grid-template-columns: 100% 1fr;
+    grid-template-rows: 10fr ;
+  }
 }
 
 .app-writer-defaultBody {
-    background: linear-gradient(270deg, rgba(0, 97, 211, 1) 10%, rgba(0, 255, 239, 1) 100%);
-    min-height:100vh;
-    a{
-        color:black;
-    }
-    button{
-        background-color:white;
-    }
-    
+  background: linear-gradient(
+    270deg,
+    rgba(0, 97, 211, 1) 10%,
+    rgba(0, 255, 239, 1) 100%
+  );
+  width: 100;
+  a {
+    color: black;
+  }
+  button {
+    background-color: white;
+  }
 }
 .app-writer-darkBody {
-    background: rgb(50, 2, 95);
-    color:rgb(133, 7, 252);
-    min-height:100vh;
-    a{
-        color:rgb(67, 1, 129);
-    }
-     button{
-         background-color: rgb(133, 7, 252)
-     }
-     input,textarea{
-        color: rgb(133, 7, 252)
-     }
+  background: rgb(50, 2, 95);
+  color: rgb(133, 7, 252);
+  min-height: 100vh;
+  a {
+    color: rgb(67, 1, 129);
+  }
+  button {
+    background-color: rgb(133, 7, 252);
+  }
+  input,
+  textarea {
+    color: rgb(133, 7, 252);
+  }
 }
 
 .app-wrapper .app-wrapper-content {
-    grid-area: c;
-    
-    background-color: cornflowerblue;
+  grid-area: c;
+
+  background-color: cornflowerblue;
 }

@@ -18,7 +18,7 @@ type ProfileType = {
 const Profile = (props: ProfileType) => {
 
     return (
-        <div className={b.darkBody}>
+        <div className={b.Body}>
             <ProfileItem userProfile={props.userProfile} isOwner={props.isOwner} savePhoto={props.savePhoto}
                          saveProfile={props.saveProfile}/>
             <ProfileStatus  isOwner={props.isOwner} status={props.status} updateStatus={props.updateStatus}/>

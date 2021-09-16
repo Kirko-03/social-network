@@ -1,29 +1,26 @@
-/* .defaultNav{
-    text-align: center;
-    grid-area:n;
-    background: radial-gradient(circle, rgba(251,223,63,1) 0%, rgba(70,252,72,1) 100%); 
-  } */
   .defaultNav{
     text-align: center;
     grid-area:n;
     background: linear-gradient(105deg,rgba(54,153,269,31)  70%,rgba(54,153,269,31)  50%, rgba(240,238,242,1) 120%);
-    
+    @media (max-width: 750px) {
+    position: relative;
+    width: 100%;
+    }
+    .item a{
+      text-decoration: none;
+      color:rgb(76 16 124)
+    }
   }  
   .darkNav{
     text-align: center;
     grid-area:n;
     background: rgb(50, 2, 95); 
-    
-  }
-
-.defaultNav .item a{
-  color:black;
+    .item a{
+      color:black;
 text-decoration: none;
-}
-.darkNav .item a{
-  text-decoration: none;
-  color:rgb(76 16 124)
-}
+    }
+
+  }
 
   .item a.activeLink, .item a.activeLink:hover,.item a.activeLink:active{
       color:blanchedalmond;

@@ -36,7 +36,7 @@ const ProfileItem = (props: ProfileType) => {
         <div>
             <div>
                 {
-                    <img alt='ava' style={{width: "300px", height: "300px"}}
+                    <img alt='ava'
                          src={props.userProfile?.photos.large ? props.userProfile?.photos.large : userPhoto}/>
                 }
                 {props.isOwner && <Input type={'file'} onChange={onPhotoSelected}/>}
