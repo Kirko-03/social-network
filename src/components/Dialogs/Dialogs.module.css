@@ -13,7 +13,7 @@
     min-height:100vh;
 }
 .message{
-    text-align: right;
+    text-align: center;
 }
 .dialogsItems .active{
 color:yellow;

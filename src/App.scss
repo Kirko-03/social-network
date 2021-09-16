@@ -5,8 +5,8 @@
   grid-template-areas:
     "h h"
     "n c";
-  grid-template-rows: 1fr 15fr;
-  grid-template-columns: 2fr 10fr;
+    grid-template-rows: 100px 1fr;
+    grid-template-columns: 2fr 10fr;
   grid-gap: 5px;
   @media (max-width: 750px) {
     grid-template-areas:
@@ -24,7 +24,7 @@
     rgba(0, 97, 211, 1) 10%,
     rgba(0, 255, 239, 1) 100%
   );
-  width: 100;
+min-height: 100vh;
   a {
     color: black;
   }

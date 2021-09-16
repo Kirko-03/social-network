@@ -30,7 +30,7 @@ export const Paginator = React.memo((props: PaginatorType) => {
             setPortionNumber(portionNumber - 1);
           }}
         >
-          <h2>🠔</h2>
+          <span >prev</span>
         </Button>
       )}
 
@@ -57,7 +57,7 @@ export const Paginator = React.memo((props: PaginatorType) => {
             setPortionNumber(portionNumber + 1);
           }}
         >
-          <h2>🠖</h2>
+          <span>next</span>
         </Button>
       )}
     </div>

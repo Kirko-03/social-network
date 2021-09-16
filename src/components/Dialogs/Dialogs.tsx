@@ -30,13 +30,13 @@ const Dialogs = (props: DialogsPropsType) => {
 
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
-                {dialogPage.dialogs.map(d => <li>{d.name}</li>)}
+                {dialogPage.dialogs.map(d => <div>{d.name}</div>)}
             </div>
             <div className={s.message}>
                 <textarea placeholder={"Введите что-нибудь"} value={NewTextMessage}
                           onChange={newTextChangeHandler}/>
                 <Button color={'primary'} style={{background:'white'}} onClick={addMessage}>new post</Button>
-                <div style={{textAlign: "left", listStyle: 'none', fontFamily: 'Helvetica', fontSize: '18px'}}>
+                <div >
                     {
                         dialogPage.messages.map(m => <li>{m.message}</li>)
                     }
