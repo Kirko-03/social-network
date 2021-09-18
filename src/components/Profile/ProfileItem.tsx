@@ -39,7 +39,7 @@ const ProfileItem = (props: ProfileType) => {
                     <img alt='ava'
                          src={props.userProfile?.photos.large ? props.userProfile?.photos.large : userPhoto}/>
                 }
-                {props.isOwner && <Input type={'file'} onChange={onPhotoSelected}/>}
+                {props.isOwner&&editMode?<div><Input type={'file'} onChange={onPhotoSelected}/></div>:''}
                 {editMode ? <div><ProfileRedux  initialValues={props.userProfile} profile={props.userProfile} onSubmit={onSubmit}/></div> :
                     <div><DefaultProfile  goToEditMode={() => {
                         setEditMode(true)

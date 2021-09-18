@@ -26,9 +26,9 @@ const MyPostForm: React.FC<InjectedFormProps<FormDataType, {}, string>> = (props
                 My post
             </div>
             <form onSubmit={props.handleSubmit}>
-                <Field placeholder={"Введите что-нибудь"} name={"NewTextPost"} component={'textarea'}
+                <Field placeholder={"Enter anything"} name={"NewTextPost"} component={'textarea'}
                        validate={[required, length]}/>
-                <button style={ButtonStyle}>Оставить пост</button>
+                <button style={ButtonStyle}>add post</button>
 
             </form>
         </div>

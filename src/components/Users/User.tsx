@@ -51,7 +51,7 @@ export const User = (props: UserPageType) => {
 
                                 }
                             )
-                        }}>Удалить из друзей</Button> :
+                        }}>Delete from friends</Button> :
                         <Button  className={us.darkUnfollowButton}  disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
                             props.setToggleFriends(true, u.id)
                             usersAPI.postUser(u.id).then
@@ -61,7 +61,7 @@ export const User = (props: UserPageType) => {
                                 props.follow(u.id)
                             })
 
-                        }}>Добавить в друзья</Button>}
+                        }}>Add as friends</Button>}
                     </div>:''}
                     </span>
                     </div>

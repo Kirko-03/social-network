@@ -33,7 +33,7 @@ const Dialogs = (props: DialogsPropsType) => {
                 {dialogPage.dialogs.map(d => <div>{d.name}</div>)}
             </div>
             <div className={s.message}>
-                <textarea placeholder={"Введите что-нибудь"} value={NewTextMessage}
+                <textarea placeholder={"Enter anything"} value={NewTextMessage}
                           onChange={newTextChangeHandler}/>
                 <Button color={'primary'} style={{background:'white'}} onClick={addMessage}>new post</Button>
                 <div >
