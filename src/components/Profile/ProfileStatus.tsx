@@ -5,11 +5,6 @@ type PropsType = {
     updateStatus: (newStatus: string) => void
     isOwner:boolean
 }
-// type StateType = {
-//     editMode: boolean,
-//     status: string
-// }
-
     let ProfileStatus = (props:PropsType) =>{
     let [editMode,setEditMode]=useState(false)
         let[status,setStatus] = useState(props.status)

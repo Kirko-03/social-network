@@ -38,8 +38,7 @@ let initialState = {
         {message: "Whats up?", like: 1},
         {message: "Learn Pituhon(((", like: -13},
         {message: "LOSEEER", like: 187},
-        {message: "Соси пинчер", like: 100}],
-    // NewTextPost: "it-camasutra",
+        {message: "(", like: 100}],
     userProfile: null,
     isAuth: false,
     status: "",
@@ -47,7 +46,6 @@ let initialState = {
 }
 
 const ADDPOST = "ADD-POST";
-// const UPDATEADDPOST = "UPDATE-ADD-POST";
 const SETUSERPROFILE = "SET-USER-PROFILE"
 const SETSTATUS = "SET-STATUS"
 const SETPHOTO = "SET-PHOTO"
@@ -63,15 +61,8 @@ const profileReducer = (state: profilePageType = initialState, action: ActionTyp
             return {
                 ...state,
                 posts: [...state.posts, newPost],
-                // NewTextPost: ""
             }
         }
-        // case   UPDATEADDPOST: {
-        //     return {
-        //         ...state,
-        //         NewTextPost: action.newText
-        //     }
-        // }
         case SETUSERPROFILE: {
             return {
                 ...state,
@@ -110,13 +101,6 @@ export const addPostAC = (NewTextPost: string) => {
         NewTextPost
     } as const
 }
-
-/*export const updateAddPostAC = (body: string) => {
-    return {
-        type: UPDATEADDPOST,
-        newText: body
-    } as const
-}*/
 export const setUserProfile = (userProfile: UserProfileType | null): SetUserProfileAC => {
     return {
         type: SETUSERPROFILE,

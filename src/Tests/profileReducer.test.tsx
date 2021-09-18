@@ -5,7 +5,7 @@ let state = {
         {message: "Whats up?", like: 1},
         {message: "Learn Pituhon(((", like: -13},
         {message: "LOSEEER", like: 187},
-        {message: "Соси пинчер", like: 100}],
+        {message: "(", like: 100}],
     userProfile: null,
     isAuth: false,
     status: ""
