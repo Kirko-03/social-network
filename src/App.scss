@@ -8,7 +8,7 @@
     "n c";
     grid-template-rows: 100px 1fr;
     grid-template-columns: 2fr 10fr;
-  grid-gap: 5px;
+  grid-row-gap: 5px;
   @media (max-width: 750px) {
     grid-template-areas:
       "n n"
