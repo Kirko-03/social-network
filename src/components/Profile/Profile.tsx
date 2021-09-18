@@ -1,5 +1,5 @@
 import React from 'react';
-import b from './Profile.module.css';
+import b from './Profile.module.scss';
 import MyPostContainer from "./MyPosts/MyPostContainer";
 import {UserProfileType} from "../../redux/profileReducer";
 import ProfileItem from './ProfileItem';

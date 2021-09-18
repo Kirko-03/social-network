@@ -1,12 +1,11 @@
 import { Input } from '@material-ui/core';
 import React, {ChangeEvent, useState} from 'react';
-
 import userPhoto from "../../nophoto.png";
 import {UserProfileType} from '../../redux/profileReducer';
 import Preloader from '../preloader/preloader';
 import {DefaultProfile} from "./DefaultProfileMode";
 import {ProfileRedux, FormDataType} from './ProfileData';
-
+import style from './Profile.module.scss'
 
 type ProfileType = {
     userProfile: UserProfileType | null
@@ -36,7 +35,7 @@ const ProfileItem = (props: ProfileType) => {
         <div>
             <div>
                 {
-                    <img alt='ava'
+                    <img alt='ava' className={style.image}
                          src={props.userProfile?.photos.large ? props.userProfile?.photos.large : userPhoto}/>
                 }
                 {props.isOwner&&editMode?<div><Input type={'file'} onChange={onPhotoSelected}/></div>:''}
